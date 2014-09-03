@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.compscii.com/ontologies/0.1/IDS.owl#"
+     xml:base="http://www.compscii.com/ontologies/0.1/IDS.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#containsAn -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#containsAn">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#isContainedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#isContainedBy">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#attackEndTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#attackEndTime">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#attackStartTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#attackStartTime">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasActualValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasActualValue">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasDesiredValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasDesiredValue">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasFailedField -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasFailedField">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceDeviceId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceDeviceId">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceDomain -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceDomain">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceIP -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceIP">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceMAC -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceMAC">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceOtherDescriptor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasSourceOtherDescriptor">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#hasStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#hasStatus">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#incidentTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#incidentTime">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#isAttackedByID -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#isAttackedByID">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#isAttackedByIP -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#isAttackedByIP">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#Attack -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#Attack"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/IDS.owl#Incident -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/IDS.owl#Incident"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

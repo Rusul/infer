@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2013-11-26T15:27:10Z</time>
+<bounds minlat="40.433376000" minlon="-86.129448000" maxlat="40.455383000" maxlon="-86.100563000"/>
+<wpt lat="40.455383000" lon="-86.100578000">
+  <ele>0.000000</ele>
+  <name>From: 2151 E Lincoln Rd Kokomo, IN</name>
+  <cmt>From: 2151 E Lincoln Rd Kokomo, IN</cmt>
+  <desc>From: 2151 E Lincoln Rd Kokomo, IN</desc>
+</wpt>
+<wpt lat="40.433376000" lon="-86.129448000">
+  <ele>0.000000</ele>
+  <name>To: Cone Palace, County Road W 300 South, Kokomo, IN</name>
+  <cmt>To: Cone Palace, County Road W 300 South, Kokomo, IN</cmt>
+  <desc>To: Cone Palace, County Road W 300 South, Kokomo, IN</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Cone Palace, County Road W 300 South, Kokomo, IN</name>
+<trkseg>
+<trkpt lat="40.455383000" lon="-86.100563000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455280000" lon="-86.107941000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455265000" lon="-86.112358000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455299000" lon="-86.112602000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455299000" lon="-86.112602000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.445747000" lon="-86.122887000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444340000" lon="-86.124153000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.442989000" lon="-86.125137000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.441868000" lon="-86.125793000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.440937000" lon="-86.126244000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.439671000" lon="-86.126724000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.438595000" lon="-86.127022000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.437740000" lon="-86.127174000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.436848000" lon="-86.127251000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.433430000" lon="-86.127296000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.433430000" lon="-86.127296000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.433376000" lon="-86.129448000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

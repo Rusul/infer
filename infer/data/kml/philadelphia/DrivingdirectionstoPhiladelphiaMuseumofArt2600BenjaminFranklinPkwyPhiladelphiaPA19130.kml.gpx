@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2014-02-27T05:04:35Z</time>
+<bounds minlat="39.953396000" minlon="-75.182014000" maxlat="39.966873000" maxlon="-75.163727000"/>
+<wpt lat="39.953396000" lon="-75.163727000">
+  <ele>0.000000</ele>
+  <name>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</name>
+  <cmt>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</cmt>
+  <desc>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</desc>
+</wpt>
+<wpt lat="39.966385000" lon="-75.182014000">
+  <ele>0.000000</ele>
+  <name>To: Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</name>
+  <cmt>To: Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</cmt>
+  <desc>To: Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</name>
+<trkseg>
+<trkpt lat="39.953396000" lon="-75.163727000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.953457000" lon="-75.163918000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.953766000" lon="-75.166206000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.953766000" lon="-75.166206000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.954029000" lon="-75.166557000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.954876000" lon="-75.166367000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.954876000" lon="-75.166367000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.957329000" lon="-75.169662000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.957485000" lon="-75.169785000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.957626000" lon="-75.169823000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.957989000" lon="-75.169807000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.957989000" lon="-75.169807000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.958313000" lon="-75.169975000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.958477000" lon="-75.170235000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.958549000" lon="-75.170525000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.958530000" lon="-75.171143000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.958687000" lon="-75.171509000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.962620000" lon="-75.176811000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.962879000" lon="-75.177017000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.963284000" lon="-75.177139000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.963284000" lon="-75.177139000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.964027000" lon="-75.177483000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.965675000" lon="-75.178757000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.965675000" lon="-75.178757000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966450000" lon="-75.179352000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966450000" lon="-75.179352000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966293000" lon="-75.179543000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966274000" lon="-75.179695000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966312000" lon="-75.179817000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966774000" lon="-75.180519000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966846000" lon="-75.180763000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966873000" lon="-75.181038000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966835000" lon="-75.181305000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966763000" lon="-75.181496000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.966385000" lon="-75.182014000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

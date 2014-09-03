@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqBrWYrAgtp_647hT6gTQ44YA0U_SYGic&sensor=false">
+    </script>
+    <script type="text/javascript">
+var geocoder;
+var map;
+
+var marker;
+
+function initialize() 
+
+{
+    var org = new google.maps.LatLng (40.455273000,-86.109764000);
+    var dest = new google.maps.LatLng (40.443279000,-86.124641000);
+    var	wps = [
+		{location: new google.maps.LatLng (40.455269000,-86.109756000)},
+		{location: new google.maps.LatLng (40.455280000,-86.108337000)},
+		{location: new google.maps.LatLng (40.440701000,-86.126060000)},
+		{location: new google.maps.LatLng (40.441589000,-86.125648000)}
+        ]
+    var myOptions = {
+      zoom: 9,
+      center: dest,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+	var rendererOptions = { map: map };
+
+
+
+     route(wps, org, dest);
+
+     org = new google.maps.LatLng (40.455273000,-86.109764000);
+     dest = new google.maps.LatLng (40.438950000,-86.127403000);
+     wps = [
+		{location: new google.maps.LatLng (40.455269000,-86.109756000)},
+		{location: new google.maps.LatLng (40.455269000,-86.112648000)},
+		{location: new google.maps.LatLng (40.455269000,-86.112648000)},
+		{location: new google.maps.LatLng (40.445740000,-86.122879000)},
+		{location: new google.maps.LatLng (40.445019000,-86.123558000)},
+		{location: new google.maps.LatLng (40.443909000,-86.124481000)},
+		{location: new google.maps.LatLng (40.438000000,-86.127419000)},
+		{location: new google.maps.LatLng (40.442982000,-86.125130000)},
+        ]
+     route(wps, org, dest);
+
+
+
+}
+
+function route(wps, org, dest) { 
+	var marker = new google.maps.Marker({
+      		position: org,
+      		map: map,
+      		title:"Start"
+  	});
+
+	var marker2 = new google.maps.Marker({
+      		position: dest,
+      		map: map,
+      		title:"End"
+  	});
+
+
+	directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true, map: map});
+
+	var request = {
+			origin: org,
+			destination: dest,
+			waypoints: wps,
+			travelMode: google.maps.DirectionsTravelMode.DRIVING
+			};
+
+	directionsService = new google.maps.DirectionsService();
+	directionsService.route(request, function(response, status) {
+	if (status == google.maps.DirectionsStatus.OK) {
+		directionsDisplay.setDirections(response);
+	}
+	else
+		alert ('failed to get directions');
+	});
+}
+
+
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>

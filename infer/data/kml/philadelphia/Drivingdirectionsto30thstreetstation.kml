@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Driving directions to 30th street station</name>
+  <description><![CDATA[]]></description>
+  <Style id="style3">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style2">
+    <LineStyle>
+      <color>73FF0000</color>
+      <width>5</width>
+    </LineStyle>
+  </Style>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</name>
+    <styleUrl>#style3</styleUrl>
+    <Point>
+      <coordinates>-75.163727,39.953396,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Driving directions to 30th street station</name>
+    <styleUrl>#style2</styleUrl>
+    <ExtendedData>
+      <Data name="_SnapToRoads">
+        <value>true</value>
+      </Data>
+    </ExtendedData>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        -75.163727,39.953396,0.000000
+        -75.163918,39.953457,0.000000
+        -75.166603,39.953819,0.000000
+        -75.169785,39.954178,0.000000
+        -75.176430,39.955063,0.000000
+        -75.180481,39.955559,0.000000
+        -75.180611,39.955593,0.000000
+        -75.180702,39.955708,0.000000
+        -75.180641,39.955948,0.000000
+        -75.180641,39.955948,0.000000
+        -75.180779,39.956055,0.000000
+        -75.180969,39.956078,0.000000
+        -75.181053,39.956051,0.000000
+        -75.181068,39.955967,0.000000
+        -75.180977,39.955841,0.000000
+        -75.181007,39.955620,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark>
+    <name>To: 30th street station</name>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>-75.181007,39.955620,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

@@ -1,0 +1,7 @@
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.w3.org/2006/vcard/ns#bday> "1988-11-15T00:00:00-05:00" .
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.w3.org/2006/vcard/ns#organization-name> "Flyers" .
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.w3.org/2006/vcard/ns#email> "stephen@stephen.com" .
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.w3.org/2006/vcard/ns#tel> "301-596-2550" .
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.w3.org/2006/vcard/ns#fn> "Stephen Suffian" .
+<http://www.w3.org/2006/vcard/ns#VCardStephen_Suffian-stephen@stephen.com> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#memberOf> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#GroupFitness> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#GroupFitness> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#groupName> "Fitness" .

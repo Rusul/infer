@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><title>
+Search Service
+</title><link href="users2.css" rel="stylesheet" type="text/css" />
+<script src="../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+<link href="users.css" rel="stylesheet" type="text/css" />
+<link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+$(function () {
+	$(document).ready(function(){
+	
+		var facetsAllNames = new Array();
+ 		var facetsAllNumbers = new Array();
+ 		var dataTypeAutocomplete;  
+ 		var dataTypeFacet = "";
+ 		var dataTypeSearch = "fn";
+ 		var temp1,temp2,temp3;
+ 		var columnReify="(3)";
+ 		
+		 $.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=http\://www.w3.org/2006/vcard/ns%23VCardSteve_Silver\-stevesilver2012@gmail.com",  
+	         		function (data) {
+						$.each(data.response.docs, function (key, val) {
+	              		if(val.predicate_t.indexOf('performsRequested')>=0){
+							$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=" + encodeURIComponent(val.object_t), function(data) {
+								$.each(data.response.docs, function (key2, val2) {
+									if(val2.predicate_t.indexOf('resultsIn')>=0){
+							        	$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=" + encodeURIComponent(val2.object_t), function(data) {
+							    			$.each(data.response.docs,function(key,val){
+												obj=val.object_t;
+												sub=val.subject_t;
+												pred=val.predicate_t;
+												if(pred.indexOf('startTerms')>=0){
+													var myObject = eval('(' + obj + ')');
+													startTerms = "Description, Distance, User Rating";
+													$.each(myObject.d.results, function (key,val){
+														startTerms+=('\n'+(key+1) + '. ' + val.Description+', '+val.Distance+', '+val.UserRating);
+													})
+													
+												
+												}
+												
+													
+											})
+											$('#MainContent_txtresponse').html(startTerms);
+							    			})
+	              					}
+								})
+						 	}) 
+	              		}
+					})
+				 })
+		 		 
+		 		getInferenceData(document.getElementById('MainContent_txtFirstUserName').value,document.getElementById('MainContent_txtFirstEmailID').value,'MainContent_txtIEFirstResponse');
+	 			getInferenceData(document.getElementById('MainContent_txtSecondUserName').value,document.getElementById('MainContent_txtSecondEmailID').value,'MainContent_txtIESecondResponse');
+		 		getInferenceData(document.getElementById('MainContent_txtThirdUserName').value,document.getElementById('MainContent_txtThirdEmailID').value,'MainContent_txtIEThirdResponse');
+		 	
+	 			setInterval(function(){
+	 				$('#MainContent_txtIEFirstResponse').html("");
+	 				$('#MainContent_txtIESecondResponse').html("");
+	 				$('#MainContent_txtIEThirdResponse').html("");
+	 				
+	 				if(document.getElementById('MainContent_txtFirstUserName').value!=""&&document.getElementById('MainContent_txtFirstEmailID').value!=""){
+	 				getInferenceData(document.getElementById('MainContent_txtFirstUserName').value,document.getElementById('MainContent_txtFirstEmailID').value,'MainContent_txtIEFirstResponse');
+	 				}
+		 			getInferenceData(document.getElementById('MainContent_txtSecondUserName').value,document.getElementById('MainContent_txtSecondEmailID').value,'MainContent_txtIESecondResponse');
+	 				getInferenceData(document.getElementById('MainContent_txtThirdUserName').value,document.getElementById('MainContent_txtThirdEmailID').value,'MainContent_txtIEThirdResponse');
+		 			},300000);
+	 		});
+		////////////////////////////////////////////////////////////////////////////////// 
+		 
+		 	function getInferenceData (name, email,table){
+		 		$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=http\://www.w3.org/2006/vcard/ns%23VCard"+name.replace(' ','_')+"\-"+email,  
+         		function (data) {
+					$.each(data.response.docs, function (key, val) {
+              		if(val.predicate_t.indexOf('performsRequested')>=0){
+						$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=" + encodeURIComponent(val.object_t), function(data) {
+							$.each(data.response.docs, function (key2, val2) {
+								if(val2.predicate_t.indexOf('resultsIn')>=0){
+									getURIDetailsSearch(encodeURIComponent(val2.object_t),name,table);	
+								}
+								
+							})
+						
+						})
+              		}
+					})
+		 	}) 
+		 }
+		 	
+			 	
+///////////////////////////////////////////////////////////////////////////////	  
+				
+			  	  function getURIDetails (uri,table){
+			      	uri = uri.replace('#','%23');
+			      	$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=" + uri, function(data) {
+							var obj;
+							var sub;
+							var pred;
+							var tellMeMore = "";
+							var type = "Unknown";
+							var image;
+							var nameHTML;
+							var productIdHTML;
+							var imageHTML;
+							var breadcrumbHTML;
+							var tempHTML;
+							var thirdColumnHTML;
+								
+							$.each(data.response.docs,function(key,val){
+									obj=val.object_t;
+									sub=val.subject_t;
+									pred=val.predicate_t;
+										
+								productDetailTable(obj,sub,pred,uri,table);
+								})
+							});
+
+			      }     
+			///////////////////////////////////////////////////////////////////////////////	  
+				function getURIDetailsSearch (uri,name,table){
+			        	uri = uri.replace('#','%23');
+			        	var startTerms;
+			        	var resultTerms;
+			        	var whyReordered;
+			        	
+			        	$.getJSON("http://" + location.hostname + ":8080/infer/select?&rows=300&listStatements=" + uri, function(data) {
+			    			$.each(data.response.docs,function(key,val){
+								obj=val.object_t;
+								sub=val.subject_t;
+								pred=val.predicate_t;
+								
+								if(pred.indexOf('resultTerms')>=0){
+									var myObject = eval('(' + obj + ')');
+									resultTerms = "Description, Distance, User Rating";
+									$.each(myObject.d.results, function (key,val){
+										resultTerms+=('\n'+(key+1) + '. ' + val.Description+', '+val.Distance+', '+val.UserRating);
+									})
+								}
+								$('#'+table).html(resultTerms);
+								
+			    			})
+			        	
+			        	});
+			        }  
+			
+			////////////////////////////////////////////////////////////////////////////////////////
+			      function productDetailTable(obj,sub,pred,uri){
+			    				var originalSub=sub;
+			        			var originalPred=pred;
+			    				var originalObj=obj;
+			        	
+			        			//Object Statements: if and else-if to make web pages hyperlinks and show images
+			    					if (obj.indexOf('http://')>=0 && (obj.indexOf('.jpg')>=0||obj.indexOf('.gif')>=0)){
+			    						imageHTML = '<img src="' + obj + '" alt="' + obj + '"width="100" height="100">';
+			    					}
+			    					else if(pred.indexOf('rdf-syntax-ns#type')>=0){}
+			    					else if(obj.indexOf('http:')==0||obj.indexOf('https:')==0){
+			    						obj = '<a href="#&URI='+obj+'">Tell Me More</a>';
+			    						}
+			    					else if(obj.indexOf(' ')<0 && obj.split(":").length>2 && obj.indexOf('T')<0){
+			    						obj = '<a href="#&URI='+obj+'">Tell Me More</a>';
+			    					}
+			    					else if(obj.indexOf('\n')>=0){
+			    						obj = obj.replace(/\n/g,'<br />');
+			    					}
+
+			    					//Predicate Statements: if statement to remove schema.org from predicate
+			    					//CHANGED TO MATCH DATA
+			    					if (pred.indexOf('http:')==0||pred.indexOf('https:')==0){
+			    						pred = pred.substring(pred.lastIndexOf('/')+1);
+			    					}
+			    					
+			    					if (pred.indexOf('#')>=0){
+			    						pred = pred.substring(pred.lastIndexOf('#')+1);
+			    					}
+			    					
+			    					if(pred.indexOf('resultTerms')>=0||pred.indexOf('startTerms')>=0){
+			    							var myObject = eval('(' + originalObj + ')');
+			    							obj = "<table><tr><td>Description</td><td>Address</td><td>User Rating</td></tr>";
+			    							$.each(myObject.d.results, function (key,val){
+			    								obj+=('<tr><td>'+val.Description+'</td><td>'+val.Address+'</td><td>'+val.UserRating+'</td></tr>');
+			    							})
+			    							
+			    							obj+=("</table>");
+			    					}
+			    					
+			    					if(pred.indexOf('name')>=0||pred.indexOf('image')>=0){}
+			    					else if(uri.indexOf('Provenance')>=0||obj.indexOf('Provenance')>=0){
+			    						$('#'+table).append('<tr><td>'+pred+'</td><td>'+obj+'</td><td></td></tr>');
+			    	    			}
+			    					else{
+			    						$('#'+table).append('<tr><td>'+pred+'</td><td>'+obj+'</td><td><a href="#&sub='+originalSub+'&pred='+originalPred+'&obj='+originalObj+'">Source</a> </td></tr>');
+			    					}
+			    		 }
+				  
+					$("#error").ajaxError(function(event, request, settings){
+			  		$(this).append("<li>Error requesting page " + settings.url + "</li>");
+					});
+
+
+
+});
+
+</script>
+</head>
+
+
+
+
+<body style="background-image:url(infer/bkgd_home.jpg);">
+<form method="post" action="SearchServicePage.aspx" id="Form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE0ODA1NDc1NTIPZBYCZg9kFgICAw9kFgICBQ9kFgoCBw8PFgQeCENzc0NsYXNzBQZ0eHRib3geBF8hU0ICAmRkAhEPDxYEHwAFBnR4dGJveB8BAgJkZAIVDw8WBB8ABQZ0eHRib3gfAQICZGQCGQ8PFgQfAGUfAQICZGQCHw8PFgYfAAUGdHh0Ym94HgRUZXh0BQxTdGV2ZSBTaWx2ZXIfAQICZGRk2h2UOSr1EspMjYGCa9WbhkKRxdE=" />
+</div>
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWDwL98d3qBQL3o8n8AwKv7Ni7AwKbt+zyDwK/6r/wDQKWkL33CgKz0dOEAwKQ6YXUDAKnvbq5BAL/iJROAvuEzMYCArLP0MYFAtiy87wDAtPwypgIAvKz4ZIOYSFURZesLXyCYDaKtueuhjbB2qk=" />
+</div>
+<div class="aspNetHidden">
+<input type="hidden" value="/wEPDwULLTE0ODA1NDc1NTIPZBYCZg9kFgICAw9kFgICBQ9kFgoCBw8PFgQeCENzc0NsYXNzBQZ0eHRib3geBF8hU0ICAmRkAhEPDxYEHwAFBnR4dGJveB8BAgJkZAIVDw8WBB8ABQZ0eHRib3gfAQICZGQCGQ8PFgQfAGUfAQICZGQCHw8PFgYfAAUGdHh0Ym94HgRUZXh0BQxTdGV2ZSBTaWx2ZXIfAQICZGRk2h2UOSr1EspMjYGCa9WbhkKRxdE=" id="__VIEWSTATE" name="__VIEWSTATE">
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" value="/wEWDwL98d3qBQL3o8n8AwKv7Ni7AwKbt+zyDwK/6r/wDQKWkL33CgKz0dOEAwKQ6YXUDAKnvbq5BAL/iJROAvuEzMYCArLP0MYFAtiy87wDAtPwypgIAvKz4ZIOYSFURZesLXyCYDaKtueuhjbB2qk=" id="__EVENTVALIDATION" name="__EVENTVALIDATION">
+</div>
+   
+
+    <div class="page">
+        <div>
+            <div class="title">
+                <table border="0" class="header">
+                    <tbody><tr>
+                        <td style="width: 30%;">
+                            <img style="height:50px;width:300px;" src="infer/infer_corp_logo.png">
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </tbody></table>
+            </div>
+        </div>
+        <div class="main">
+            
+    <div style="width: 900px;">
+        <div>
+            <span style="display:inline-block;color:Black;font-weight:bold;width:162px;" class="style2">BING SEARCH</span>
+        </div>
+        <table cellspacing="2" cellpadding="2" style="height: auto; width: 900px;" class="tableClass">
+            <tbody><tr style="font-family: Calibri; font-size: medium">
+                <td align="left" style="height: 25px;">
+                    <span style="color:Black;" class="style3" id="MainContent_lblQuery">Search Keyword:</span>
+                    <span style="display:inline-block;width:8px;"></span>
+                    <input type="text" style="width:300px;" class="txtbox" id="MainContent_txtsearch" value="restaurants" name="ctl00$MainContent$txtsearch">
+                </td>
+                <td align="left" colspan="2" style="height: 25px;">
+                    <span style="color:Black;" id="MainContent_Label1">Top result:</span>
+                    &nbsp;
+                    <input type="text" style="width:157px;" class="txtbox" id="MainContent_txtTop" value="10" name="ctl00$MainContent$txtTop">
+                </td>
+            </tr>
+
+            <tr style="font-family: Calibri; font-size: medium">
+                <td valign="top" style="height: 200px; width: 100%;" colspan="5">
+                    <textarea style="background-color:#99CCFF;height:200px;width:900px;font-size: medium;
+                        font-family: Calibri" id="MainContent_txtresponse" cols="20" rows="2" readonly="readonly" name="ctl00$MainContent$txtresponse"></textarea>
+                </td>
+            </tr>
+        </tbody></table>
+        <div>
+            <br>
+            <span style="display:inline-block;color:Black;font-weight:bold;width:300px;" class="style2" id="MainContent_Label8">Inference Engine Search (Steve Silver)</span>
+        </div>
+        <table style="height: auto; width: 900px;" class="tableClass">
+            <tbody><tr style="font-family: Calibri; font-size: medium">
+                <td align="left" class="style1">
+                    <span style="display:inline-block;color:Black;width:90px;" id="MainContent_lblUID">User Name:</span>
+                </td>
+                <td style="width: 130px;">
+                    &nbsp;
+                    <input type="text" style="width:100px;" class="txtbox" id="MainContent_txtFirstUserName"  value="Steve Silver" name="MainContentFirstUserName">
+                </td>
+                <td align="left" class="style1">
+                    <span style="display:inline-block;color:Black;width:100px;" id="MainContent_Label6">Email ID:</span>
+                </td>
+                <td>
+                    &nbsp;
+                    <input type="text" style="width:250px;" class="txtbox" id="MainContent_txtFirstEmailID"  value="stevesilver2012@gmail.com" name="MainContentFirstEmailID">
+                </td>
+            </tr>
+            <tr style="font-family: Calibri; font-size: medium">
+                <td colspan="5" style="height: 25px;">
+                    <textarea style="background-color:#99CCFF;height:200px;width:900px;font-family: Calibri;
+                        font-size: medium" id="MainContent_txtIEFirstResponse" cols="20" rows="2" readonly="readonly" name="ctl00$MainContent$txtIEFirstResponse"></textarea>
+                </td>
+            </tr>
+        </tbody></table>
+        <div>
+            <div>
+            <br>
+                <span style="display:inline-block;color:Black;font-weight:bold;width:300px;" id="MainContent_Label9">Inference Engine Search (Jeff Platnum)</span>
+            </div>
+            <table style="height: auto; width: 900px;" class="tableClass">
+                <tbody><tr style="font-family: Calibri; font-size: medium">
+                    <td align="left" class="style1">
+                        <span style="display:inline-block;color:Black;width:90px;" id="MainContent_Label5">User Name:</span>
+                    </td>
+                    <td style="width: 130px;">
+                        &nbsp;
+                        <input type="text" style="width:100px;" class="txtbox" id="MainContent_txtSecondUserName"  value="Jeff Platnum" name="MainContentSecondUserName">
+                    </td>
+                    <td align="left" class="style1">
+                        <span style="display:inline-block;color:Black;width:100px;" id="MainContent_Label7">Email ID:</span>
+                    </td>
+                    <td>
+                        &nbsp;
+                        <input type="text" style="width:250px;" class="txtbox" id="MainContent_txtSecondEmailID"  value="jeffplatinum2013@gmail.com" name="MainContentSecondEmailID">
+                    </td>
+                </tr>
+                <tr style="font-family: Calibri; font-size: medium">
+                    <td colspan="5" style="height: 25px;">
+                        <textarea style="background-color:#99CCFF;height:200px;width:900px;font-size: medium;
+                            font-family: Calibri" id="MainContent_txtIESecondResponse" cols="20" rows="2" readonly="readonly" name="ctl00$MainContent$txtIESecondResponse"></textarea>
+                    </td>
+                </tr>
+            </tbody></table>
+            
+            
+            <span style="display:inline-block;color:Black;font-weight:bold;width:300px;" id="MainContent_Label9">Inference Engine Search (Susan Silver)</span>
+            </div>
+            <table style="height: auto; width: 900px;" class="tableClass">
+                <tbody><tr style="font-family: Calibri; font-size: medium">
+                    <td align="left" class="style1">
+                        <span style="display:inline-block;color:Black;width:90px;" id="MainContent_Label5">User Name:</span>
+                    </td>
+                    <td style="width: 130px;">
+                        &nbsp;
+                        <input type="text" style="width:100px;" class="txtbox" id="MainContent_txtThirdUserName" value="Susan Silver" name="MainContent_txtThirdUserName">
+                    </td>
+                    <td align="left" class="style1">
+                        <span style="display:inline-block;color:Black;width:100px;" id="MainContent_Label7">Email ID:</span>
+                    </td>
+                    <td>
+                        &nbsp;
+                        <input type="text" style="width:250px;" class="txtbox" id="MainContent_txtThirdEmailID"  value="susansilver2012@gmail.com" name="MainContent_txtThirdEmailID">
+                    </td>
+                </tr>
+                <tr style="font-family: Calibri; font-size: medium">
+                    <td colspan="5" style="height: 25px;">
+                        <textarea style="background-color:#99CCFF;height:200px;width:900px;font-size: medium;
+                            font-family: Calibri" id="MainContent_txtIEThirdResponse" cols="20" rows="2" readonly="readonly" name="ctl00$MainContent$txtIESusanResponse"></textarea>
+                    </td>
+                </tr>
+            </tbody></table>
+            
+            
+            
+        </div>
+
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+    
+
+
+</div>

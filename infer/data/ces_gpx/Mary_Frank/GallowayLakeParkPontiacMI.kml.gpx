@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2013-11-26T15:26:55Z</time>
+<bounds minlat="42.668743000" minlon="-83.258942000" maxlat="42.671131000" maxlon="-83.230408000"/>
+<wpt lat="42.669392000" lon="-83.233650000">
+  <ele>0.000000</ele>
+  <name>From: 3000 University Dr, Auburn Hills, MI 48326</name>
+  <cmt>From: 3000 University Dr, Auburn Hills, MI 48326</cmt>
+  <desc>From: 3000 University Dr, Auburn Hills, MI 48326</desc>
+</wpt>
+<wpt lat="42.668743000" lon="-83.258942000">
+  <ele>0.000000</ele>
+  <name>To: Galloway Lake Park, Pontiac, MI</name>
+  <cmt>To: Galloway Lake Park, Pontiac, MI</cmt>
+  <desc>To: Galloway Lake Park, Pontiac, MI</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Galloway Lake Park, Pontiac, MI</name>
+<trkseg>
+<trkpt lat="42.669392000" lon="-83.233650000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670563000" lon="-83.230415000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670563000" lon="-83.230415000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670647000" lon="-83.230408000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670807000" lon="-83.230499000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670044000" lon="-83.232590000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670044000" lon="-83.232590000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670399000" lon="-83.232986000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670654000" lon="-83.233406000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670792000" lon="-83.233810000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670845000" lon="-83.234261000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.671124000" lon="-83.250565000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.671085000" lon="-83.254311000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.671131000" lon="-83.254768000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.671131000" lon="-83.254768000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670521000" lon="-83.255745000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.668743000" lon="-83.258942000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

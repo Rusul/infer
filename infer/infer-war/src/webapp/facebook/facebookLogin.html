@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+    <script src="../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      document.getElementById("apiResponse").style.display='block';
+	    document.getElementById("status").innerHTML = 'Facebook Login Succesful.';
+	    document.getElementById("fb-login-button-id").style.display='none';
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '1486769618226210',
+    cookie     : true,  // enable cookies to allow the server to access 
+                        // the session
+    xfbml      : true,  // parse social plugins on this page
+    version    : 'v2.0' // use version 2.0
+  });
+
+  // Now that we've initialized the JavaScript SDK, we call 
+  // FB.getLoginStatus().  This function gets the state of the
+  // person visiting this page and can return one of three states to
+  // the callback you provide.  They can be:
+  //
+  // 1. Logged into your app ('connected')
+  // 2. Logged into Facebook, but not your app ('not_authorized')
+  // 3. Not logged into Facebook and can't tell if they are logged into
+  //    your app or not.
+  //
+  // These three cases are handled in the callback function.
+
+  FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div style="text-align: center; width: 100%;">
+<div style="float:left; " id=banner>   </div>
+</div>
+<div style="clear:both"></div>
+<div style ="width: 100%;">
+  
+     <div style="clear:both"></div>
+<div style ="width: 20%; float:left;">
+    <table class="hierarchy" id="hierarchy">
+    </table> 
+</div>
+
+<div style="width:79%; float:right ;" id="mainBar">
+     <div style="clear:both"></div>
+ <div>
+ This application infers your general interests based on your facebook likes. It then integrates these interests into navigation algorithms. As you drive, it uses your interests to make slight adjustments to your route to lead you past locations you may like based on these interests.
+<break></break>
+</div>
+  
+
+<div class="fb-login-button" id="fb-login-button-id" data-scope="user_likes, email" onlogin="checkLoginState()" data-max-rows="1" data-size="xlarge"></div>
+<div>
+<div id="status" style="font-size:200%"></div>
+<div>
+<button id="apiResponse" type="button" style="padding-top: 20px; display:none;">Click here to load your facebook likes into the inference engine.</button>
+</div>
+
+
+<ul id="user"></ul>
+
+<div id="likes"></div>
+<div id="success"></div>
+
+<script>
+var likes = "";
+var categories = "";
+var name = "";
+var email = "";
+document.getElementById('apiResponse').onclick = function() {
+  FB.api('/me?fields=id,name,email', function(response) {
+	var list = document.getElementById('user');
+	var li = document.createElement('li');
+    var likesHTML = document.getElementById('likes');
+    var li2 = document.createElement('li');
+    var HTMLLikes="";
+	name=response.name;
+	email=response.email;
+    li.innerHTML = name + " " + email;
+    list.appendChild(li);
+    FB.api('/me/likes?limit=1000', function(response) {
+    for (var i=0; i < response.data.length; i++) {
+        if(i==0){
+            HTMLLikes="Category: " + response.data[0].category + ", Like: " + response.data[0].name+"<break>";
+            
+            likes="&likes="+response.data[0].name;
+            categories= "&categories="+response.data[0].category;}
+        else{  
+            HTMLLikes=HTMLLikes+"Category: " + response.data[i].category + ", Like: " + response.data[i].name+"</br>";
+            categories=categories+"&categories="+response.data[i].category;
+            likes=likes+"&likes="+response.data[i].name;
+            }
+    }
+    likesHTML.innerHTML=HTMLLikes;
+
+    if(response.data.length>0){
+            $.getJSON("/infer/rest/writeFacebookLikes?name="+name+"&email="+email+categories+likes,  
+            function (data) {
+		document.getElementById("success").innerHTML='Likes loaded. Click here to search your interests: <a href="../autocomplete">Navigate Interests</a> and here to see your route:<a href="../map">Route</a>.';
+		    });
+    }
+    });
+  });
+}
+</script>
+
+</body>
+</html>
+

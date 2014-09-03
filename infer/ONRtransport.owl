@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/steve/ontologies/2014/4/untitled-ontology-35#"
+     xml:base="http://www.semanticweb.org/steve/ontologies/2014/4/untitled-ontology-35"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasAircraft -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasAircraft"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasEndNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasEndNode"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasGroundEquipment -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasGroundEquipment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasItinerary -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasItinerary"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasPackaging -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasPackaging"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasProduct -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasProduct"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasStartNode -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasStartNode"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#averageDisruptionProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#averageDisruptionProbability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#closingHourIs -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#closingHourIs"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCargoAvailability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCargoAvailability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCargoAvailabilityDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCargoAvailabilityDate"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCondition -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasCondition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasDestinationDateMax -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasDestinationDateMax"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasDestinationDateMin -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasDestinationDateMin"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasFlightTakingOffProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasFlightTakingOffProbability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasGrossWeight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasGrossWeight"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasIdentification -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasIdentification"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasItineraryList -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasItineraryList"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasLargeDisruptionProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasLargeDisruptionProbability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasMaximumStackability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasMaximumStackability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasMaximumTonnage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasMaximumTonnage"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasNetVolume -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasNetVolume"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasSmallDisruptionProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasSmallDisruptionProbability"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasTargetDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#hasTargetDate"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isAvailable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isAvailable"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isFeasible -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isFeasible"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isReturnable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#isReturnable"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#openingHourIs -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#openingHourIs"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#worstDisruptionProbability -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#worstDisruptionProbability"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Aircraft -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Aircraft"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Equipment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Equipment"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Itinerary -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Itinerary"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Node -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Node"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Packaging -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Packaging"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Product -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Product"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Request -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#Request"/>
+    
+
+
+    <!-- http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#TransportationMovement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/steve/ontologies/2014/4/ONRtransport#TransportationMovement"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

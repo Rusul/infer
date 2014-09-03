@@ -1,0 +1,5 @@
+@prefix ids: http://www.compscii.com/ontologies/IDS/0.1/IDS.owl#
+
+
+[repeatBlacklist:   (?l ids:hasSourceDeviceId ?x) -> Blacklist(?l ids:hasSourceDeviceId ?x)]
+

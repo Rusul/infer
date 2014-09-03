@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="http://linkedevents.org/ontology/" uri="linkedevents.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="http://www.compscii.com/ontologies/0.1/AutoIE.owl" uri="AutoIE.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="http://www.compscii.com/ontologies/0.1/IDS.owl" uri="IDS.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="http://www.compscii.com/ontologies/0.1/Provenance.owl" uri="Provenance.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="http://www.semanticweb.org/steve/ontologies/2014/4/untitled-ontology-35" uri="ONRtransport.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://linkedevents.org/ontology/" uri="bin/linkedevents.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://www.compscii.com/ontologies/0.1/AutoIE.owl" uri="bin/AutoIE.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://www.compscii.com/ontologies/0.1/AutoIE.owl" uri="bin/util/classes/AutoIE.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://www.compscii.com/ontologies/0.1/Provenance.owl" uri="bin/Provenance.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://www.compscii.com/ontologies/0.1/Provenance.owl" uri="bin/util/classes/Provenance.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1406448187606" name="shadowed:http://www.semanticweb.org/steve/ontologies/2014/4/untitled-ontology-35" uri="bin/ONRtransport.owl"/>
+    </group>
+</catalog>

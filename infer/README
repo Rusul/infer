@@ -1,0 +1,64 @@
+1)  install wordnet first.
+.
+sudo apt-get install wordnet
+
+
+2)  Modify Java Install
+Add to ${JAVA_HOME}/jre/lib/security/java.policy the following line:
+
+    permission javax.management.MBeanTrustPermission "register";
+
+3)  Add in necessary packages.
+
+cd $HOME
+wget http://www.compscii.com/pkg.tgz
+
+tar xvfz pkg.tgz
+
+4)  close all terminal windows and re-open to get new environment variables.
+
+We will now start zookeeper and load zookeepers initial data.
+
+5) cd bash; ./setup_zk.sh
+
+6)  cd ~/pkg/tomcat/bin; ./catalina.sh run
+
+The server is now up. 
+
+7)  To load Auto Data
+
+http://localhost:8080/infer/rest/loadData
+
+
+
+The intrusion detection URLs are:
+
+Attack URL:
+
+http://localhost:8080/infer/rest/checkSecurity?ip=192.444.33.1&mac=3522&devId=1&dom=domain&fField=123&aVal=666&dVal=234
+
+
+List attacks
+
+http://localhost:8080/infer/rest/listAttacks?id=1
+
+Auto:
+
+Partial results
+
+localhost:8080/infer/rest/listTrackPoints?since=2013-01-01T00:00:15.340Z&auto=2C7RC1BG3DR614265&maxActualSegments=1&reset=true
+
+current route
+
+http://localhost:8080/infer/map/currenthistory.html?maxActualSegments=2&delay=30000&zoomLevel=14&reset=true&auto=2C7RC1BG3DR614265
+
+New map
+http://localhost:8080/infer/maps
+
+Restful interface
+
+http://localhost:8080/infer/rest/application.wadl
+
+
+
+

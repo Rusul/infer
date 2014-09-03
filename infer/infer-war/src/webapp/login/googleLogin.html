@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Google Login JavaScript Example</title>
+<meta charset="UTF-8">
+    <script src="../Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <!--MAKE SURE ORIGINS ARE CORRECT (AS IN THE WEB URL scottstreit.com:8080 is registered and not www. or anything like that -->
+    <!--Add a button for the user to click to initiate auth sequence -->
+    <button id="authorizeButton" onclick="redirectToAuth()">Authorize</button>
+	<div class="buttons" style='display:none'>
+    	<button id="getCalsButton" onclick="getCalendarList()">Get List</button>
+    	<button id="loadButton" onclick="loadCalendarInfo()">Load</button>
+	</div>
+    
+    <script type="text/javascript">
+
+	var clientId = '459840824570-3fpg8dnm0r1kp8e48374ror7sqvv8v51.apps.googleusercontent.com';
+	var scopes = 'https://www.googleapis.com/auth/calendar.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+	var accessToken='';
+	var authorized=false;	
+	if(checkForToken()){checkAuth();}
+
+	function redirectToAuth(){
+		window.location='https://accounts.google.com/o/oauth2/auth?scope='+scopes+'&response_type=token&client_id='+clientId+'&redirect_uri='+window.location.href;
+}
+	function checkForToken() {
+		var params = {}, queryString = location.hash.substring(1),
+	    	regex = /([^&=]+)=([^&]*)/g, m;
+		while (m = regex.exec(queryString)) {
+	  	params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+		}
+		if('access_token' in params){
+			authorizeButton.style.visibility = 'hidden';
+			accessToken=params['access_token'];
+			return true;
+		}
+		return false;
+	}
+
+	function checkAuth() {
+		authorized = false;
+		$.get( "https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+accessToken, function( resp ) {
+			if('audience' in resp && resp['audience']==clientId){
+				$('.buttons').show();
+			}
+		
+		});
+		return authorized;
+	}
+
+      function loadCalendarInfo() {
+
+		$("input:checkbox:checked").each(function(){
+			var calendarId = $(this).val();
+                var eventStart="";
+                var eventEnd="";
+                var location="";
+                var description="";
+        	 $.get( "https://www.googleapis.com/userinfo/v2/me?access_token="+accessToken, function( first_resp ) {
+                $.get( "https://www.googleapis.com/calendar/v3/calendars/"+calendarId+"/events?maxResults=10&access_token="+accessToken, function( resp ) {
+                    console.debug(first_resp.name + " " + first_resp.email);
+                    $.each(resp.items, function (key, val) {
+                        document.getElementById('success').innerHTML='Successfully loaded calendar events into Infer.';
+                        if(val.status.indexOf('cancelled')<0){                      
+                            console.debug(val.summary+" " + val.start[Object.keys(val.start)[0]] + " " + val.end[Object.keys(val.end)[0]]);
+                            eventStart=eventStart+"&eventStart="+val.start[Object.keys(val.start)[0]];
+                            eventEnd=eventEnd+"&eventEnd="+val.end[Object.keys(val.end)[0]];
+                            location=location+ "&location="+val.location;
+                            description=description+"&description=" +val.description;
+                        }
+                });
+                     $.getJSON("/infer/rest/writeGoogleEvents?name="+first_resp.name+"&email="+first_resp.email+eventStart+eventEnd+location+description, 
+                                 function (data) {
+                                console.debug('google events written.');
+                                });
+                })
+			})
+		});
+      }
+
+      function getCalendarList() {
+        $.get( "https://www.googleapis.com/calendar/v3/users/me/calendarList?access_token="+accessToken, function( resp ) {
+			$('.calendars').append('<form>');
+			$.each(resp.items, function (key, val) {
+				$('.calendars').append('<input type="checkbox" name='+val.summary+' value='+val.id+'>'+val.summary+'<br>');
+			});
+			$('.calendars').append('</form>');
+			
+		})
+      }
+
+
+    </script>
+<div id='success'></div>
+<div class='calendars'></div>
+</body>
+</html>
+

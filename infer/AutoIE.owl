@@ -1,0 +1,2069 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY dcmitype "http://purl.org/dc/dcmitype/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY ns "http://www.w3.org/2006/vcard/ns#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY XMLSchema "http://www.w3.org/2000/10/XMLSchema#" >
+    <!ENTITY oil "http://www.daml.org/2001/03/daml+oil#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY sensor-jpa2 "http://www.mindswap.org/~evren/services/sensor-jpa.daml#" >
+    <!ENTITY sensor-jpa "file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.compscii.com/ontologies/0.1/AutoIE.owl#"
+     xml:base="http://www.compscii.com/ontologies/0.1/AutoIE.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:ns="http://www.w3.org/2006/vcard/ns#"
+     xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+     xmlns:XMLSchema="http://www.w3.org/2000/10/XMLSchema#"
+     xmlns:sensor-jpa2="http://www.mindswap.org/~evren/services/sensor-jpa.daml#"
+     xmlns:oil="http://www.daml.org/2001/03/daml+oil#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:sensor-jpa="file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl">
+        <owl:imports rdf:resource="http://linkedevents.org/ontology/"/>
+        <owl:imports rdf:resource="http://www.compscii.com/ontologies/0.1/Provenance.owl"/>
+        <owl:imports rdf:resource="http://www.w3.org/2006/vcard/ns"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/description -->
+
+    <owl:AnnotationProperty rdf:about="&dc;description"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayTrackLocationDataFor -->
+
+    <owl:AnnotationProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayTrackLocationDataFor"/>
+    
+
+
+    <!-- http://www.daml.org/2001/03/daml+oil#oneOf -->
+
+    <owl:AnnotationProperty rdf:about="&oil;oneOf"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Accuracy -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Accuracy">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Address -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Address">
+        <rdfs:range rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#AddressLocation -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;AddressLocation">
+        <rdfs:range rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorLocation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Altitude -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Altitude">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorGeo"/>
+        <rdfs:range rdf:resource="&XMLSchema;positiveInteger"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#City -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;City">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Contact -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Contact">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorContact"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Country -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Country">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#County -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;County">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Data -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Data">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorData"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Description -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Description">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorName"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Email -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Email">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#EncryptionMode -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;EncryptionMode">
+        <rdfs:range rdf:resource="&sensor-jpa;EncryptionModeType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorData"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ExpireTime -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;ExpireTime">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Format -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Format">
+        <rdfs:range rdf:resource="&sensor-jpa;FormatType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorData"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#GeoLocation -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;GeoLocation">
+        <rdfs:range rdf:resource="&sensor-jpa;SensorGeo"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorLocation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Latitude -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Latitude">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorGeo"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&XMLSchema;positiveInteger"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Location -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Location">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorLocation"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#LongName -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;LongName">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorName"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Longitude -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Longitude">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorGeo"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&XMLSchema;positiveInteger"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Manufacturer -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Manufacturer">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Mobility -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Mobility">
+        <rdfs:range rdf:resource="&sensor-jpa;MobilityType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Name -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Name">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorName"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Organization -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Organization">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Person -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Person">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Phone -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Phone">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Power -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Power">
+        <rdfs:range rdf:resource="&sensor-jpa;PowerType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Purpose -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Purpose">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorContact"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Range -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Range">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Resolution -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Resolution">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Sample -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Sample">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorData"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SamplingRate -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;SamplingRate">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorSpecification"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingMeasurement -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;SensingMeasurement">
+        <rdfs:range rdf:resource="&sensor-jpa;SensingMeasurementType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingMechanism -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;SensingMechanism">
+        <rdfs:range rdf:resource="&sensor-jpa;SensingMechanismType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingMode -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;SensingMode">
+        <rdfs:range rdf:resource="&sensor-jpa;SensingModeType"/>
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SerialNumber -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;SerialNumber">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorName"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ShortName -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;ShortName">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorName"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Specification -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Specification">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorSpecification"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#State -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;State">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Street -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Street">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Time -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Time">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorTime"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#TriggerMode -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;TriggerMode">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorType"/>
+        <rdfs:range rdf:resource="&sensor-jpa;TriggerModeType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Type -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Type">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&sensor-jpa;SensorType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#URI -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;URI">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorLocation"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Unit -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;Unit">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorData"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#WorkingMode -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;WorkingMode">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorTime"/>
+        <rdfs:range rdf:resource="&sensor-jpa;WorkingModeType"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ZipCode -->
+
+    <owl:ObjectProperty rdf:about="&sensor-jpa;ZipCode">
+        <rdfs:domain rdf:resource="&sensor-jpa;SensorAddress"/>
+        <rdfs:range rdf:resource="&XMLSchema;string"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#DestinationHasAsAnEvent -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#DestinationHasAsAnEvent">
+        <rdfs:range rdf:resource="&dcmitype;Event"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsADestination"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#describesLikesAs -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#describesLikesAs">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#driverDrivesARoute -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#driverDrivesARoute">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeHasAsADriver"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#drives -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#drives">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventCommittedByPerson -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventCommittedByPerson">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#personCommitsToEvent"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsADestination -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsADestination">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#findsInformationFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#findsInformationFor">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#performsRequested"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsALocation -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsALocation">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfInterest"/>
+        <rdfs:range rdf:resource="&ns;Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfInterest -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfInterest">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&ns;Address"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfOrigin -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfOrigin">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsMember -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsMember">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasCurrentPoint -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasCurrentPoint"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasGroupInterestOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasGroupInterestOf">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasIndividualInterestOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasIndividualInterestOf">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasLineSegment -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasLineSegment"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasSegmentPoint -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasSegmentPoint"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#helpsGroupDefine -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#helpsGroupDefine">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasGroupInterestOf"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#helpsIndividualDefine -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#helpsIndividualDefine">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasIndividualInterestOf"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isCurrentPointOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isCurrentPointOf"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isDrivenBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isDrivenBy">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#drives"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isFriendOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isFriendOf">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOperatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOperatedBy">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOpinedAbout -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOpinedAbout">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOriginFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOriginFor">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsAPointOfOrigin"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isRecordedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isRecordedBy">
+        <rdfs:range rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#records"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isSegmentPointOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isSegmentPointOf"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isSensedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isSensedBy">
+        <rdfs:range rdf:resource="&sensor-jpa;Sensor"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isSensedBy"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#isTrackedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isTrackedBy">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#lineSegmentWhen -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#lineSegmentWhen">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#LineSegment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mandatoryInterestsForGroupInclusion -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mandatoryInterestsForGroupInclusion">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayBeAPointOfInterestFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayBeAPointOfInterestFor">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&ns;Address"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayBeOperatedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayBeOperatedBy">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayOperate -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayOperate">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayBeOperatedBy"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayTrackLocationDataFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#mayTrackLocationDataFor">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topObjectProperty"/>
+        <rdfs:domain rdf:resource="&ns;Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#memberOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#memberOf">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasAsMember"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#operates -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#operates">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOperatedBy"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinesFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinesFor">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOpinedAbout"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#performsRequested -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#performsRequested">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#personCommitsToEvent -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#personCommitsToEvent">
+        <rdfs:range rdf:resource="&dcmitype;Event"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#records -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#records">
+        <rdfs:range rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#recordsForAnalysis -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#recordsForAnalysis">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultsIn"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#referencesLikesFor -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#referencesLikesFor">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#describesLikesAs"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#relatesInterestTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#relatesInterestTo">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultsIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultsIn">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeHasAsADriver -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeHasAsADriver">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#senses -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#senses">
+        <rdfs:domain rdf:resource="&sensor-jpa;Sensor"/>
+        <rdfs:range rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#storesAsHistogram -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#storesAsHistogram">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#tracks -->
+
+    <owl:ObjectProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#tracks">
+        <rdfs:range rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <owl:inverseOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#isTrackedBy"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Accuracy -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Accuracy"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Altitude -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Altitude"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#City -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;City"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Country -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Country"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#County -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;County"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Description -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Description"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Email -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Email"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ExpireTime -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;ExpireTime"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#LongName -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;LongName"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Manufacturer -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Manufacturer"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Organization -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Organization"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Person -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Person"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Phone -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Phone"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Purpose -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Purpose"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Range -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Range"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Resolution -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Resolution"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Sample -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Sample"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SamplingRate -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;SamplingRate"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SerialNumber -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;SerialNumber"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ShortName -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;ShortName"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#State -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;State"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Street -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Street"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#URI -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;URI"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Unit -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;Unit"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ZipCode -->
+
+    <owl:DatatypeProperty rdf:about="&sensor-jpa;ZipCode"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#VIN -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#VIN">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#autoDirection -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#autoDirection">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#autoSpeed -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#autoSpeed">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#bodyStyle -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#bodyStyle">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#buidDate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#buidDate">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#carColor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#carColor">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#carMake -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#carMake">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#carModel -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#carModel">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#carYear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#carYear">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#dwell -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#dwell">
+        <dc:description rdf:datatype="&rdfs;Literal">Time in a place in milliseconds</dc:description>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;long"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventDescription">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventDestinationType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventDestinationType">
+        <rdfs:comment>valid values are:
+actual
+inferredByLocation
+inferredByDescription</rdfs:comment>
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventEndTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventEndTime">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsALocation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsALocation">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventStartTime -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventStartTime">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventStatus">
+        <rdfs:domain rdf:resource="&dcmitype;Event"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#groupName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#groupName">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasDelayOf -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#hasDelayOf">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestDescription">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestName">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestTerms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#interestTerms">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#lineSegmentWhen -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#lineSegmentWhen">
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#longNameOfPOI -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#longNameOfPOI">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#minInterestsForGroupInclusion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#minInterestsForGroupInclusion">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#notInterestTerms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#notInterestTerms">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#numberOfResults -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#numberOfResults">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionCategory -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionCategory">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionSynonyms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionSynonyms">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionText -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionText">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionType -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#opinionType">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#pointStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#pointStatus">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#preferences -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#preferences">
+        <dc:description>The query preferences for a Person</dc:description>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:domain rdf:resource="&ns;VCard"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultTerms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultTerms">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeStatus -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeStatus">
+        <dc:description>Set to COMPLETED when not active.  Everything else is active.</dc:description>
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#searchTerm -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#searchTerm">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#selectedTerms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#selectedTerms">
+        <rdfs:subPropertyOf rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#resultTerms"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#sequenceNumberForTrackPoint -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#sequenceNumberForTrackPoint">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;long"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#shortNameOfPOI -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#shortNameOfPOI">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#startTerms -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#startTerms">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#trackPointWhen -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#trackPointWhen">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#typeOfPOI -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#typeOfPOI">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:subPropertyOf rdf:resource="&owl;topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#whyReorderd -->
+
+    <owl:DatatypeProperty rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#whyReorderd">
+        <rdfs:domain rdf:resource="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#EncryptionModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa;EncryptionModeType"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#FormatType -->
+
+    <owl:Class rdf:about="&sensor-jpa;FormatType"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#MobilityType -->
+
+    <owl:Class rdf:about="&sensor-jpa;MobilityType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#PowerType -->
+
+    <owl:Class rdf:about="&sensor-jpa;PowerType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingMeasurementType -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensingMeasurementType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingMechanismType -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensingMechanismType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensingModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensingModeType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Sensor -->
+
+    <owl:Class rdf:about="&sensor-jpa;Sensor"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorAddress -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorAddress"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorContact -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorContact"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorData -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorData"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorGeo -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorGeo"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorLocation -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorLocation"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorName -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorName"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorSpecification -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorSpecification"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorTime -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorTime"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SensorType -->
+
+    <owl:Class rdf:about="&sensor-jpa;SensorType"/>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#TriggerModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa;TriggerModeType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#WorkingModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa;WorkingModeType">
+        <oil:oneOf>
+            <rdf:Description/>
+        </oil:oneOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Group"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#InterestArea"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#LineSegment -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#LineSegment"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Opinion">
+        <dc:description>The way we track &quot;Likes&quot; from Facebook.  We abstract them to opinions.</dc:description>
+    </owl:Class>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#Search"/>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#SearchResult">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint -->
+
+    <owl:Class rdf:about="http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#EncryptionModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;EncryptionModeType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#FormatType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;FormatType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#MobilityType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;MobilityType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#PowerType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;PowerType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#SensingMeasurementType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;SensingMeasurementType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#SensingMechanismType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;SensingMechanismType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#SensingModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;SensingModeType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#TriggerModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;TriggerModeType"/>
+    
+
+
+    <!-- http://www.mindswap.org/~evren/services/sensor-jpa.daml#WorkingModeType -->
+
+    <owl:Class rdf:about="&sensor-jpa2;WorkingModeType"/>
+    
+
+
+    <!-- http://www.w3.org/2000/10/XMLSchema#positiveInteger -->
+
+    <owl:Class rdf:about="&XMLSchema;positiveInteger"/>
+    
+
+
+    <!-- http://www.w3.org/2000/10/XMLSchema#string -->
+
+    <owl:Class rdf:about="&XMLSchema;string"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#Address -->
+
+    <owl:Class rdf:about="&ns;Address"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#Location -->
+
+    <owl:Class rdf:about="&ns;Location"/>
+    
+
+
+    <!-- http://www.w3.org/2006/vcard/ns#VCard -->
+
+    <owl:Class rdf:about="&ns;VCard"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Active -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Active">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Analog -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Analog">
+        <rdf:type rdf:resource="&sensor-jpa2;FormatType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Ascii -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Ascii">
+        <rdf:type rdf:resource="&sensor-jpa2;FormatType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Binary -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Binary">
+        <rdf:type rdf:resource="&sensor-jpa2;FormatType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Biological -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Biological">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Chemical -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Chemical">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Continuous -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Continuous">
+        <rdf:type rdf:resource="&sensor-jpa2;WorkingModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Cyber -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Cyber">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#ElectricMagnetic -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;ElectricMagnetic">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Fixed -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Fixed">
+        <rdf:type rdf:resource="&sensor-jpa2;PowerType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#FixedMobility -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;FixedMobility">
+        <rdf:type rdf:resource="&sensor-jpa2;MobilityType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Frequency -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Frequency">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Humidity -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Humidity">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Instant -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Instant">
+        <rdf:type rdf:resource="&sensor-jpa2;WorkingModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#LightIntensity -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;LightIntensity">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Mechanical -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Mechanical">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#MechanicalVibration -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;MechanicalVibration">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#MobileMobility -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;MobileMobility">
+        <rdf:type rdf:resource="&sensor-jpa2;MobilityType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Optical -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Optical">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#OtherMeasurementType -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;OtherMeasurementType">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#OtherMechanismType -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;OtherMechanismType">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Passive -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Passive">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Plain -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Plain">
+        <rdf:type rdf:resource="&sensor-jpa2;EncryptionModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Position -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Position">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Pressure -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Pressure">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Radiation -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Radiation">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Radioactive -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Radioactive">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMechanismType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Rechargable -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Rechargable">
+        <rdf:type rdf:resource="&sensor-jpa2;PowerType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Renewable -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Renewable">
+        <rdf:type rdf:resource="&sensor-jpa2;PowerType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#SoundIntensity -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;SoundIntensity">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Temperature -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Temperature">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Temporary -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Temporary">
+        <rdf:type rdf:resource="&sensor-jpa2;WorkingModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Triggered -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Triggered">
+        <rdf:type rdf:resource="&sensor-jpa2;TriggerModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Untriggered -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Untriggered">
+        <rdf:type rdf:resource="&sensor-jpa2;TriggerModeType"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- file:/home/scott/ontology/trunk/ontology/sensor-jpa.daml#Wind -->
+
+    <owl:NamedIndividual rdf:about="&sensor-jpa;Wind">
+        <rdf:type rdf:resource="&sensor-jpa2;SensingMeasurementType"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

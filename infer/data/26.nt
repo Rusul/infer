@@ -1,0 +1,5 @@
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479080973> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#isTrackedBy> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1393479081018> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1393479081018> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#pointStatus> "point" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1393479081018> <http://www.w3.org/2006/vcard/ns#longitude> "-75.180969000" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1393479081018> <http://www.w3.org/2006/vcard/ns#latitude> "39.956078000" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1393479081018> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#trackPointWhen> "2014-01-04T01:18:32.10Z" .

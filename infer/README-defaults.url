@@ -1,0 +1,11 @@
+Good Examples:
+
+For Showing Route Movements with Inference:
+
+Panning: http://scottstreit.com:8080/infer/maps/index-dev.html?bRoute=true&bPoi=false&zoomLevel=14&maxActualSegments=2&bPan=true
+ 
+No Panning: http://scottstreit.com:8080/infer/maps/index-dev.html?bRoute=true&bPoi=false&zoomLevel=13&maxActualSegments=2
+
+For Showing POIs from facebook likes:
+For now: http://scottstreit.com:8080/infer/maps/index-dev.html?bRoute=true&bPoi=true&zoomLevel=13&maxActualSegments=10&bPan=false
+

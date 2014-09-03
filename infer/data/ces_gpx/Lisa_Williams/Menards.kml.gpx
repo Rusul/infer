@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2013-11-26T15:27:10Z</time>
+<bounds minlat="40.455273000" minlon="-86.112091000" maxlat="40.495541000" maxlon="-86.100563000"/>
+<wpt lat="40.455383000" lon="-86.100578000">
+  <ele>0.000000</ele>
+  <name>From: 2151 E Lincoln Rd Kokomo, IN</name>
+  <cmt>From: 2151 E Lincoln Rd Kokomo, IN</cmt>
+  <desc>From: 2151 E Lincoln Rd Kokomo, IN</desc>
+</wpt>
+<wpt lat="40.495468000" lon="-86.110611000">
+  <ele>0.000000</ele>
+  <name>To: Menards, East Havens Street, Kokomo, IN</name>
+  <cmt>To: Menards, East Havens Street, Kokomo, IN</cmt>
+  <desc>To: Menards, East Havens Street, Kokomo, IN</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Menards, East Havens Street, Kokomo, IN</name>
+<trkseg>
+<trkpt lat="40.455383000" lon="-86.100563000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455284000" lon="-86.107582000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455273000" lon="-86.111809000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455273000" lon="-86.111809000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455360000" lon="-86.111946000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455544000" lon="-86.112091000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.456387000" lon="-86.111336000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.457638000" lon="-86.110397000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.458809000" lon="-86.109665000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.460148000" lon="-86.109001000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.461105000" lon="-86.108627000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.462063000" lon="-86.108337000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.462650000" lon="-86.108185000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.463978000" lon="-86.107956000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.464851000" lon="-86.107887000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.492073000" lon="-86.107292000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.493214000" lon="-86.107323000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.493984000" lon="-86.107399000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.495537000" lon="-86.107719000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.495537000" lon="-86.107719000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.495541000" lon="-86.108047000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.495487000" lon="-86.108360000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.495468000" lon="-86.110611000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

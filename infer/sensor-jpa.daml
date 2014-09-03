@@ -1,0 +1,373 @@
+<?xml version='1.0'?>
+<rdf:RDF  
+xmlns:daml="http://www.daml.org/2001/03/daml+oil#" 
+xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+xmlns="http://www.mindswap.org/~evren/services/sensor-jpa.daml#">
+
+
+<daml:Class rdf:ID="Sensor"/>
+
+
+<daml:ObjectProperty rdf:ID="Name">
+	<rdfs:domain rdf:resource="#Sensor"/>
+	<rdfs:range rdf:resource="#SensorName"/>
+</daml:ObjectProperty>
+	
+	<daml:Class rdf:ID="SensorName"/>
+	
+	<daml:DatatypeProperty rdf:ID="LongName">
+		<rdfs:domain rdf:resource="#SensorName"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	
+	<daml:DatatypeProperty rdf:ID="ShortName">
+		<rdfs:domain rdf:resource="#SensorName"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	
+	<daml:DatatypeProperty rdf:ID="Description">
+		<rdfs:domain rdf:resource="#SensorName"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:DatatypeProperty rdf:ID="SerialNumber">
+		<rdfs:domain rdf:resource="#SensorName"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	
+
+<daml:ObjectProperty rdf:ID="Type">
+	<rdfs:domain rdf:resource="#Sensor"/>
+	<rdfs:range rdf:resource="#SensorType"/>
+</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorType"/>
+		
+		
+		<daml:ObjectProperty rdf:ID="SensingMechanism">
+			<rdfs:domain rdf:resource="#SensorType"/>
+			<rdfs:range rdf:resource="#SensingMechanismType"/>
+		</daml:ObjectProperty>
+
+		
+		<daml:Class rdf:ID="SensingMechanismType">
+			<daml:oneOf rdf:parseType="Collection">
+				<SensingMechanismType rdf:ID="ElectricMagnetic"/>
+				<SensingMechanismType rdf:ID="Mechanical"/>		
+				<SensingMechanismType rdf:ID="Biological"/>
+				<SensingMechanismType rdf:ID="Chemical"/>
+				<SensingMechanismType rdf:ID="Radioactive"/>
+				<SensingMechanismType rdf:ID="Cyber"/>
+				<SensingMechanismType rdf:ID="Optical"/>
+				<SensingMechanismType rdf:ID="OtherMechanismType"/>
+			</daml:oneOf>
+		</daml:Class>
+
+
+		<daml:ObjectProperty rdf:ID="SensingMeasurement">
+			<rdfs:domain rdf:resource="#SensorType"/>
+			<rdfs:range rdf:resource="#SensingMeasurementType"/>
+		</daml:ObjectProperty>
+
+		<daml:Class rdf:ID="SensingMeasurementType">
+			<daml:oneOf rdf:parseType="Collection">
+				<SensingMeasurementType rdf:ID="Humidity"/>
+				<SensingMeasurementType rdf:ID="Pressure"/>		
+				<SensingMeasurementType rdf:ID="Temperature"/>
+				<SensingMeasurementType rdf:ID="Wind"/>
+				<SensingMeasurementType rdf:ID="Frequency"/>
+				<SensingMeasurementType rdf:ID="Position"/>
+				<SensingMeasurementType rdf:ID="LightIntensity"/>
+				<SensingMeasurementType rdf:ID="SoundIntensity"/>
+				<SensingMeasurementType rdf:ID="Radiation"/>
+				<SensingMeasurementType rdf:ID="MechanicalVibration"/>
+				<SensingMeasurementType rdf:ID="OtherMeasurementType"/>
+			</daml:oneOf>
+		</daml:Class>
+
+		
+		<daml:ObjectProperty rdf:ID="SensingMode">
+			<rdfs:domain rdf:resource="#SensorType"/>
+			<rdfs:range rdf:resource="#SensingModeType"/>
+		</daml:ObjectProperty>
+
+		
+		<daml:Class rdf:ID="SensingModeType">
+			<daml:oneOf rdf:parseType="Collection">
+				<SensingModeType rdf:ID="Active"/>
+				<SensingModeType rdf:ID="Passive"/>		
+			</daml:oneOf>
+		</daml:Class>
+
+		<daml:ObjectProperty rdf:ID="TriggerMode">
+			<rdfs:domain rdf:resource="#SensorType"/>
+			<rdfs:range rdf:resource="#TriggerModeType"/>
+		</daml:ObjectProperty>
+
+		
+		<daml:Class rdf:ID="TriggerModeType">
+			<daml:oneOf rdf:parseType="Collection">
+				<TriggerModeType rdf:ID="Triggered"/>
+				<TriggerModeType rdf:ID="Untriggered"/>		
+			</daml:oneOf>
+		</daml:Class>
+
+				
+	<daml:ObjectProperty rdf:ID="Location">
+		<rdfs:domain rdf:resource="#Sensor"/>
+		<rdfs:range rdf:resource="#SensorLocation"/>
+	</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorLocation"/>
+	
+	<daml:ObjectProperty rdf:ID="AddressLocation">
+		<rdfs:domain rdf:resource="#SensorLocation"/>
+		<rdfs:range rdf:resource="#SensorAddress"/>
+	</daml:ObjectProperty>
+	
+	<daml:Class rdf:ID="SensorAddress"/>
+		
+			<daml:DatatypeProperty rdf:ID="Street">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>
+			
+			<daml:DatatypeProperty rdf:ID="County">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>			
+			
+			<daml:DatatypeProperty rdf:ID="City">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>
+
+		
+			<daml:DatatypeProperty rdf:ID="Country">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>
+			
+					
+			<daml:DatatypeProperty rdf:ID="State">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>
+			
+					
+			<daml:DatatypeProperty rdf:ID="ZipCode">
+				<rdfs:domain rdf:resource="#SensorAddress"/>
+				<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+			</daml:DatatypeProperty>
+			
+			
+	<daml:ObjectProperty rdf:ID="GeoLocation">
+		<rdfs:domain rdf:resource="#SensorLocation"/>
+		<rdfs:range rdf:resource="#SensorGeo"/>
+	</daml:ObjectProperty>
+	
+	<daml:Class rdf:ID="SensorGeo">
+	</daml:Class>
+		
+		
+	<daml:DatatypeProperty rdf:ID="Latitude">
+		<rdfs:domain rdf:resource="#SensorGeo"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#positiveInteger"/>
+	</daml:DatatypeProperty>
+	
+			
+	<daml:DatatypeProperty rdf:ID="Longitude">
+		<rdfs:domain rdf:resource="#SensorGeo"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#positiveInteger"/>
+	</daml:DatatypeProperty>
+
+				
+	<daml:DatatypeProperty rdf:ID="Altitude">
+		<rdfs:domain rdf:resource="#SensorGeo"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#positiveInteger"/>
+	</daml:DatatypeProperty>
+		 
+
+					
+	<daml:DatatypeProperty rdf:ID="URI">
+		<rdfs:domain rdf:resource="#SensorLocation"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+
+
+			
+	<daml:ObjectProperty rdf:ID="Time">
+		<rdfs:domain rdf:resource="#Sensor"/>
+		<rdfs:range rdf:resource="#SensorTime"/>
+	</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorTime"/>
+		
+	<daml:ObjectProperty rdf:ID="WorkingMode">
+		<rdfs:domain rdf:resource="#SensorTime"/>
+		<rdfs:range rdf:resource="#WorkingModeType"/>
+	</daml:ObjectProperty>		
+	
+	<daml:Class rdf:ID="WorkingModeType">
+		<daml:oneOf rdf:parseType="Collection">
+			<WorkingModeType rdf:ID="Instant"/>				
+			<WorkingModeType rdf:ID="Temporary"/>
+			<WorkingModeType rdf:ID="Continuous"/>
+		</daml:oneOf>
+	</daml:Class>
+		
+							
+
+<daml:ObjectProperty rdf:ID="Data">
+	<rdfs:domain rdf:resource="#Sensor"/>
+	<rdfs:range rdf:resource="#SensorData"/>
+</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorData"/>
+	
+	<daml:ObjectProperty rdf:ID="Format">
+		<rdfs:domain rdf:resource="#SensorData"/>
+		<rdfs:range rdf:resource="#FormatType"/>
+	</daml:ObjectProperty>
+		
+			<daml:Class rdf:ID="FormatType"/>
+			<FormatType rdf:ID="Binary"/>
+			<FormatType rdf:ID="Ascii"/>
+			<FormatType rdf:ID="Analog"/>
+	
+	
+	<daml:DatatypeProperty rdf:ID="Unit">
+		<rdfs:domain rdf:resource="#SensorData"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+		
+	<daml:ObjectProperty rdf:ID="EncryptionMode">
+		<rdfs:domain rdf:resource="#SensorData"/>
+		<rdfs:range rdf:resource="#EncryptionModeType"/>
+	</daml:ObjectProperty>
+		
+			<daml:Class rdf:ID="EncryptionModeType"/>
+			<EncryptionModeType rdf:ID="Plain"/>
+					
+	
+	<daml:DatatypeProperty rdf:ID="Sample">
+		<rdfs:domain rdf:resource="#SensorData"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+
+
+
+
+<daml:ObjectProperty rdf:ID="Specification">
+	<rdfs:domain rdf:resource="#Sensor"/>
+	<rdfs:range rdf:resource="#SensorSpecification"/>
+</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorSpecification"/>
+	
+		
+	<daml:ObjectProperty rdf:ID="Mobility">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="#MobilityType"/>
+	</daml:ObjectProperty>	
+	
+		<daml:Class rdf:ID="MobilityType">
+			<daml:oneOf rdf:parseType="Collection">
+				<MobilityType rdf:ID="FixedMobility"/>
+				<MobilityType rdf:ID="MobileMobility"/>
+			</daml:oneOf>
+		</daml:Class>
+			
+		
+	<daml:ObjectProperty rdf:ID="Power">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="#PowerType"/>
+	</daml:ObjectProperty>
+	
+		<daml:Class rdf:ID="PowerType">
+			<daml:oneOf rdf:parseType="Collection">
+				<PowerType rdf:ID="Renewable"/>
+				<PowerType rdf:ID="Fixed"/>
+				<PowerType rdf:ID="Rechargable"/>
+			</daml:oneOf>
+		</daml:Class>
+	
+	<daml:DatatypeProperty rdf:ID="Range">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:DatatypeProperty rdf:ID="Resolution">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>	
+	
+	<daml:DatatypeProperty rdf:ID="Accuracy">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:DatatypeProperty rdf:ID="ExpireTime">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:DatatypeProperty rdf:ID="SamplingRate">
+		<rdfs:domain rdf:resource="#SensorSpecification"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+
+
+
+<daml:ObjectProperty rdf:ID="Contact">
+	<rdfs:domain rdf:resource="#Sensor"/>
+	<rdfs:range rdf:resource="#SensorContact"/>
+</daml:ObjectProperty>
+
+	<daml:Class rdf:ID="SensorContact"/>
+	
+	<daml:DatatypeProperty rdf:ID="Organization">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:DatatypeProperty rdf:ID="Person">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	<daml:ObjectProperty rdf:ID="Address">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range  rdf:resource="#SensorAddress"/>
+	</daml:ObjectProperty>
+	
+	<daml:DatatypeProperty rdf:ID="Email">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+
+	<daml:DatatypeProperty rdf:ID="Phone">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+
+	<daml:DatatypeProperty rdf:ID="Purpose">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+	
+	<daml:DatatypeProperty rdf:ID="Manufacturer">
+		<rdfs:domain rdf:resource="#SensorContact"/>
+		<rdfs:range rdf:resource="http://www.w3.org/2000/10/XMLSchema#string"/>
+	</daml:DatatypeProperty>
+	
+</rdf:RDF>
+
+
+

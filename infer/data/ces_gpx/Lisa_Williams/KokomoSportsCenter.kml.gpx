@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2013-11-26T15:27:10Z</time>
+<bounds minlat="40.441986000" minlon="-86.133125000" maxlat="40.455383000" maxlon="-86.100563000"/>
+<wpt lat="40.455383000" lon="-86.100578000">
+  <ele>0.000000</ele>
+  <name>From: 2151 E Lincoln Rd Kokomo, IN</name>
+  <cmt>From: 2151 E Lincoln Rd Kokomo, IN</cmt>
+  <desc>From: 2151 E Lincoln Rd Kokomo, IN</desc>
+</wpt>
+<wpt lat="40.441986000" lon="-86.133125000">
+  <ele>0.000000</ele>
+  <name>To: Kokomo Sports Center, West Southway Boulevard, Kokomo, IN</name>
+  <cmt>To: Kokomo Sports Center, West Southway Boulevard, Kokomo, IN</cmt>
+  <desc>To: Kokomo Sports Center, West Southway Boulevard, Kokomo, IN</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Kokomo Sports Center, West Southway Boulevard, Kokomo, IN</name>
+<trkseg>
+<trkpt lat="40.455383000" lon="-86.100563000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455280000" lon="-86.107941000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455265000" lon="-86.112358000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455299000" lon="-86.112602000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.455299000" lon="-86.112602000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.446350000" lon="-86.122253000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.445213000" lon="-86.123398000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444340000" lon="-86.124153000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444340000" lon="-86.124153000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444504000" lon="-86.124664000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444523000" lon="-86.125267000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444164000" lon="-86.126701000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.444008000" lon="-86.128456000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.443958000" lon="-86.129837000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.443813000" lon="-86.130699000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.443623000" lon="-86.131233000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.443241000" lon="-86.131912000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.442844000" lon="-86.132355000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="40.441986000" lon="-86.133125000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

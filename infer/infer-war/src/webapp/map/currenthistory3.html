@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" charset="UTF-8"/>
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map-canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqBrWYrAgtp_647hT6gTQ44YA0U_SYGic&sensor=false">
+    </script>
+    <script src="../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+<script src="../Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+<link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<link href="../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+
+    var map;
+    var directionsDisplay =[];//the actual google objects for each mapped route
+    var actRoutesGet = [];
+    var infRoutesGet = [];
+    var hisRoutesGet = [];
+    var routeList = []; //an array of route numbers, statuses for each mapped route
+    var skip=0; //number of points to skip each iteration of the route creation
+    var delay = 45000; //number of milliseconds to wait between each JSON call
+    var since = "2013-01-01T00:00:15.340Z";  
+    var markerArray = []; //an array of locations, routenumbers, and statuses for each point
+    var inferredIcon = "http://maps.google.com/mapfiles/arrow.png";
+    var histIcon = "http://labs.google.com/ridefinder/images/mm_20_purple.png";
+    var actIcon = "http://maps.google.com/mapfiles/marker.png";
+   
+  
+
+function initializeNew() {  
+        var myOptions = {
+          //zoom: 9,//currenthistory4
+	    zoom: 8,//currenthistory2,3
+	  //zoom: 7,//currenthistory1	
+          center: new google.maps.LatLng (40.443279000,-86.124641000),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+    	var rendererOptions = { map: map };
+	getData(); 
+    	
+    }
+
+function route(wps, org, dest, routeCounter) { 
+/*console.debug("org is "  + org.location);
+console.debug("org.source is "  + org.toSource());
+console.debug("dest is "  + dest.location);
+console.debug("dest source "  + dest.toSource());
+console.debug("wps source "  + wps.toSource());*/
+    	
+
+
+	var marker = new google.maps.Marker({
+			position: org.location,
+          		map: map,
+          		title:"Start (" + org.status + "):" + routeCounter,
+          		route: org.route
+      	});
+	if(org.status == "actual"){
+		marker.setIcon(actIcon);
+	}
+	else if (org.status== "history"){
+		marker.setIcon(histIcon);
+	}
+	else if(org.status=="inferred"){
+		marker.setIcon(inferredIcon);
+	}
+	markerArray.push(marker);
+	
+	var markersWPS = [];
+	for (i=0;i<wps.length;i++){
+		markersWPS[i] = new google.maps.Marker({
+			position: wps[i].location,
+			map: map,
+			title:"Waypoint (" + wps[i].status+")" + routeCounter,
+			route: wps[i].route
+			});
+		if(wps[i].status=="inferred"){
+			markersWPS[i].setIcon(inferredIcon);
+		}
+		else if(wps[i].status=="history"){
+			markersWPS[i].setIcon(histIcon);
+		}
+		else if(wps[i].status=="actual"){
+			markersWPS[i].setIcon(actIcon);
+		}
+		markerArray.push(markersWPS[i]);
+	}
+	
+    	
+	var marker2 = new google.maps.Marker({
+          		position: dest.location,
+          		map: map,
+          		title:"End (" + dest.status + "):" + routeCounter,
+          		route: dest.route
+      	});
+	if(dest.status=="inferred"){
+		marker2.setIcon(inferredIcon);
+	}
+	else if(dest.status=="history"){
+		marker2.setIcon(histIcon);
+	}
+	else if(dest.status=="actual"){
+		marker2.setIcon(actIcon);
+	}
+	markerArray.push(marker2);
+	
+	/*var bounds = new google.maps.LatLngBounds ();
+	for(var i = 0;i< markerArray.length;i++){
+		bounds.extend(markerArray[i].position);	
+	}
+	map.fitBounds(bounds);*/
+    	
+	directionsDisplay[routeCounter] = new google.maps.DirectionsRenderer({suppressMarkers: true, map: map, preserveViewport: true});
+	
+	routeList[routeCounter]={status: org.status, routeNum: org.route};
+	
+		if(org.status=="actual" || org.status=="inferred"){
+	
+    	var request = {
+    			origin: org.location,
+    			destination: dest.location,
+    			waypoints: wps.location,
+    			travelMode: google.maps.DirectionsTravelMode.DRIVING
+    			};
+    	directionsService = new google.maps.DirectionsService();
+    	directionsService.route(request, function(response, status) {
+    	if (status == google.maps.DirectionsStatus.OK) {
+    		
+		directionsDisplay[routeCounter].setDirections(response);
+		
+    	}
+    	else
+    		alert ('failed to get directions, org: ' + org.location + "... dest: " + dest.location + "... wps: " + wps.toSource());
+    	});
+		}
+	
+    }
+    
+    function showData() {
+    	//this is where I am attempting to split the routes into
+    	//actual, inferred, and historical. I have the interval because
+    	//otherwise google maps will try and route them simultaneously.
+    	routes = [hisRoutesGet, actRoutesGet, infRoutesGet];
+	
+	if(actRoutesGet && actRoutesGet.length>0){//sets the since variable to be used for JSON calls
+	since=actRoutesGet[actRoutesGet.length-1].when;
+	map.panTo(new google.maps.LatLng (actRoutesGet[actRoutesGet.length-1].lat,actRoutesGet[actRoutesGet.length-1].lng));//currenthistory3
+//map.panTo(new google.maps.LatLng (routes[0][0].lat,routes[0][0].lng));//currenthistory2
+	}
+
+    	waits = [0,100,100];
+    	
+    	foundMarker = false;
+    	foundRoute = false;
+    	i=0;
+
+//	if(routes[0][0]){ //currenthistory2
+ //   	map.panTo(new google.maps.LatLng (routes[0][0].lat,routes[0][0].lng));
+//	console.debug("Lat: " + routes[0][0].lat);
+//	}
+
+    	for(j=0;j<markerArray.length;j++){
+    		foundActMarker=false;
+    		for(k=0;k<actRoutesGet.length;k++){
+			tempPoint = new google.maps.LatLng (actRoutesGet[k].lat,actRoutesGet[k].lng);
+    			if(markerArray[j].position ==tempPoint){
+    				foundActMarker = true;
+				//actRoutesGet.splice(actRoutesGet[k],1);	
+				console.debug("Remove Marker: " + actRoutesGet[k] + ".");
+    			}
+    		}
+    	}
+    		
+
+
+
+    	for(j=0;j<markerArray.length;j++){
+    		foundHistMarker=false;
+    		for(k=0;k<hisRoutesGet.length;k++){
+    			if(markerArray[j].route ==hisRoutesGet[k].route){
+    				foundHistMarker = true;	
+    			}
+    		}
+    		if(!foundHistMarker && markerArray[j].status=="history"){
+    			markerArray[j].setMap(null);
+    		}
+    	}
+    		
+    		
+    	for(l=0;l<routeList.length;l++){
+    		foundHistRoute=false;
+    		for(h=0;h<hisRoutesGet.length;h++){
+    			if(routeList[l].route==hisRoutesGet[h].route){
+    				foundHistRoute=true;
+    			}
+    		}
+    		if(!foundHistRoute && routeList[l].status == "history"){
+    			directionsDisplay[l].setMap(null);
+    		}
+    	}
+
+    	for(var i =0; i<markerArray.length;i++){//deletes markers from previous routes
+    		
+    		if(markerArray[i].icon == inferredIcon){
+    		markerArray[i].setMap(null);	
+    		}
+    	}
+    	
+    	for(var i =0; i<directionsDisplay.length;i++){//deletes markers from previous routes
+    		if(routeList[i].status=="inferred"){
+    		directionsDisplay[i].setMap(null);	
+    		}
+    		
+    	}
+		
+		
+		console.debug("Actual Route (pre-interval): " + routes[1].length + " points.");
+        	m=0;
+		var interval = setInterval(function(){
+			if(m==routes.length){
+				clearInterval(interval);
+			}
+			else{
+				showRoute(routes[m], waits[m]);
+				
+				if(routes[m]){				
+					console.debug("Route (interval) " + m + ": " + routes[m].length + " points.");
+				}
+				m=m+1;
+			}
+				
+		},1000)
+
+		actRoutesGet = [];
+		infRoutesGet = [];
+		hisRoutesGet = [];
+        
+    }
+    
+    function showRoute(routesShow, wait) {
+		var lastRoute="";
+		var routesShow;	
+		var org;
+		var dest;
+		var wps = [];
+		var routeCounter = 0;
+		var pushCounter = 0;
+		var thisPoint;
+		var thisStatus;
+		var prevPoint;
+		var prevStatus;
+		var i=0;
+		
+		var interval = setInterval(function() {
+			
+			if(!routesShow||i>=routesShow.length-1){
+				clearInterval(interval);
+				if (wps.length != 0) {
+					
+					//if last point is reached and there are waypoints,
+					//it routes the final remaining points
+					if(i>routesShow.length-1){
+						i = routesShow.length-1;
+					}	
+					thisPoint = new google.maps.LatLng (routesShow[i].lat,routesShow[i].lng);
+					thisStatus = routesShow[i].status;
+					thisRoute = routesShow[i].route;
+					dest = {location: thisPoint, status: thisStatus, route: thisRoute};
+					route(wps,org,dest,routeCounter++);
+					console.debug("Just Completed "+routesShow[0].status+" Route.");
+				}
+			}
+			else{
+				
+				thisPoint = new google.maps.LatLng (routesShow[i].lat,routesShow[i].lng);
+				thisStatus = routesShow[i].status;
+				thisRoute = routesShow[i].route;
+
+				//if(routesShow[i].status =="actual"){
+				//it resets the "since" variable based only on actual points
+				//map.panTo(thisPoint);	//currenthistory4
+				//}
+				
+				if(i>0){
+					prevPoint = new google.maps.LatLng (routesShow[i-1].lat,routesShow[i-1].lng);
+					prevStatus = routesShow[i-1].status;
+					prevRoute = routesShow[i-1].route;
+				}
+				
+			
+				if (pushCounter == 0) {//if starting a new route
+					if(i==0){//if this is the first point in the call, make this point origin
+						org = {location: thisPoint, status: thisStatus, route: thisRoute};
+						wps = [];
+						console.debug("Just Started "+routesShow[0].status+" Route.");
+					}				
+					else{//if this is not the first point in the call, make the previous point the origin
+						org = {location: prevPoint, status: prevStatus, route: thisRoute};
+						wps = [{location: thisPoint, status: thisStatus, route: thisRoute}];
+						}
+					pushCounter++;			
+				}
+				else if(thisRoute != prevRoute){
+					dest = {location: prevPoint, status: prevStatus, route: prevRoute};
+					pushCounter = 0;
+					route(wps, org, dest, routeCounter++);
+					console.debug("this: " + thisRoute + ", last: " + prevRoute);
+				}
+				else if(pushCounter<9){//if it has not gotten to a 9th point yet
+						wps.push({location: thisPoint, status: thisStatus, route: thisRoute});
+						pushCounter++;
+				}
+				else if (pushCounter >= 9) {//if it has reached the 9th point
+					dest = {location: thisPoint, status: thisStatus, route: thisRoute};
+					pushCounter = 0;
+					route(wps,org,dest,routeCounter++);
+				}
+
+				i=i+1+skip;
+			}
+		},wait)
+			
+	}
+		
+	function getData() {
+
+		$.getJSON("http://" + location.hostname + ":8080/infer/select?since=" + since + "&infer=true&history=true&listCurrentTrackPoints=true&auto=12345",  
+         	function (data) {
+			if(data!=null){	
+			$.each(data.results, function (key, val) {
+			 	if(val.status == "actual"){
+					actRoutesGet.push(val);
+				}
+			 	else if(val.status == "inferred"){
+			 		infRoutesGet.push(val);
+			 	}
+			 	else if(val.status == "history"){
+			 		hisRoutesGet.push(val);
+			 	}
+            			})
+				
+				console.debug("Actual Routes from JSON: " + actRoutesGet.length);
+			}
+		})
+    }
+$(function () {
+	var temp2;
+	var temp3;
+	if(location.href.indexOf('&skip=')>=0)
+			if(location.href.indexOf('&skip=')<location.href.lastIndexOf('&')){
+ 				temp2 = location.href.substring(location.href.indexOf('&skip='));
+ 				skip = temp2.substring(6,temp2.lastIndexOf('&')); 
+ 				}
+ 			else{
+ 				skip = location.href.substring(location.href.indexOf('&skip=')+6); 
+ 				}
+	if(location.href.indexOf('&delay=')>=0)
+		if(location.href.indexOf('&delay=')<location.href.lastIndexOf('&')){
+				temp3 = location.href.substring(location.href.indexOf('&delay='));
+				delay = temp3.substring(7,temp3.lastIndexOf('&')); 
+				}
+			else{
+				delay = location.href.substring(location.href.indexOf('&delay=')+7); //schema.org is TRUE, Grants is FALSE
+				}
+	console.debug("Skip: " + skip);
+	console.debug("Delay: " + delay);
+	
+	$(document).ready(function(){
+   
+		setInterval(function(){
+			showData();getData();
+				
+		},delay)
+		
+	 		});
+	
+				  
+					$("#error").ajaxError(function(event, request, settings){
+			  		$(this).append("<li>Error requesting page " + settings.url + "</li>");
+					});
+
+
+
+});
+google.maps.event.addDomListener(window, 'load', initializeNew);
+
+      
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"/>
+  </body>
+</html>
+

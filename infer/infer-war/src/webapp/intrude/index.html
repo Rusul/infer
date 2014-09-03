@@ -1,0 +1,663 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>IDS-30 Days</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link type="text/css" rel="stylesheet" href="css/jquery-ui.css"/>
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="../../excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="scripts/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="scripts/jquery.flot.js"></script>
+	<script language="javascript" type="text/javascript" src="scripts/jquery.flot.categories.js"></script>
+	<script language="javascript" type="text/javascript" src="scripts/jquery-ui.js"></script>
+
+
+	<script type="text/javascript">
+	$(function() {
+		var today = new Date();
+		var dateArrayAttack = new Array();
+		var dateArrayInc = new Array();
+		var plot;
+		var tomorrow = new Date();
+		tomorrow.setDate(tomorrow.getDate()+1);
+		var todayString;
+		var tomorrowString;
+		if(today.getDate().toString().length>1 && today.getMonth().toString().length>1){
+			todayString =today.getFullYear()+"-"+(today.getMonth()+1)+"-"+today.getDate();
+		}
+		else if(today.getDate().toString().length>1){
+			todayString =today.getFullYear()+"-0"+(today.getMonth()+1)+"-"+today.getDate();
+		}
+		else if(today.getMonth().toString().length>1){
+			todayString =today.getFullYear()+"-"+(today.getMonth()+1)+"-0"+today.getDate();
+		}
+		else{
+			todayString =today.getFullYear()+"-0"+(today.getMonth()+1)+"-0"+today.getDate();
+		}
+		if(tomorrow.getDate().toString().length>1 && tomorrow.getMonth().toString().length>1){
+			tomorrowString =tomorrow.getFullYear()+"-"+(tomorrow.getMonth()+1)+"-"+tomorrow.getDate();
+		}
+		else if(tomorrow.getDate().toString().length>1){
+			tomorrowString =tomorrow.getFullYear()+"-0"+(tomorrow.getMonth()+1)+"-"+tomorrow.getDate();
+		}
+		else if(tomorrow.getMonth().toString().length>1){
+			tomorrowString =tomorrow.getFullYear()+"-"+(tomorrow.getMonth()+1)+"-0"+tomorrow.getDate();
+		}
+		else{
+			tomorrowString =tomorrow.getFullYear()+"-0"+(tomorrow.getMonth()+1)+"-0"+tomorrow.getDate();
+		}
+		document.getElementById("datepicker").value =todayString;
+		document.getElementById("datepicker2").value = tomorrowString;
+
+		document.getElementById("radio2").checked = 'checked';
+		$("#graphcontainer").show();
+        $("#autocompletecontainer").hide();
+		$("#tablecontainer").hide();
+		$( "#radio" ).buttonset();
+		$.datepicker.setDefaults({ dateFormat: 'yy-mm-dd' });
+		$("#datepicker").datepicker({onSelect: function(dateText) {
+			var fromDate1 = new Date(dateText);
+			fromDate1.setDate(fromDate1.getDate()+1);
+
+			var toDate1 = new Date(document.getElementById('datepicker2').value);
+			toDate1.setDate(toDate1.getDate()+1);
+
+			getIncidents(fromDate1,toDate1,"incidentsTable");
+			getAttacks(fromDate1,toDate1,"attacksTable");
+ 		}
+		});
+		$("#datepicker2").datepicker({onSelect: function(dateText) {
+			var fromDate2 = new Date(document.getElementById('datepicker').value);
+			fromDate2.setDate(fromDate2.getDate()+1);
+
+			var toDate2 = new Date(dateText);
+			toDate2.setDate(toDate2.getDate()+1);
+
+			getIncidents(fromDate2,toDate2,"incidentsTable");
+			getAttacks(fromDate2,toDate2,"attacksTable");
+ 		}
+		});
+		$(document).on('click','#radio1', function(){
+			$("#incidentsTableGraph").html("");
+			$("#attacksTableGraph").html("");
+            $("#autocompletecontainer").hide();
+			$("#tablecontainer").hide();
+			$("#graphcontainer").show();
+		});
+		$(document).on('click','#radio2', function(){
+			$("#incidentsTableGraph").html("");
+			$("#attacksTableGraph").html("");
+				$('#graph').empty();
+
+			$("#tablecontainer").hide();
+            $("#autocompletecontainer").hide();
+			plot30DaysAgo();
+			$("#graphcontainer").show();
+		});
+		$(document).on('click','#radio3', function(){
+			$("#incidentsTableGraph").html("");
+			$("#attacksTableGraph").html("");
+            $("#autocompletecontainer").hide();
+			$("#tablecontainer").hide();
+			plotOneYearAgo();
+			$("#graphcontainer").show();
+		});
+		$(document).on('click','#radio4', function(){
+			$("#graphcontainer").hide();
+            $("#autocompletecontainer").hide();
+			$("#tablecontainer").show();
+			getIncidents(today,tomorrow,"incidentsTable");
+			getAttacks(today,tomorrow,"attacksTable");
+
+		});
+		$(document).on('click','#radio5', function(){
+			$("#graphcontainer").hide();
+			$("#tablecontainer").hide();
+            $("#autocompletecontainer").show();
+		});
+
+		$( document ).ready(function() {
+			document.getElementById("radio2").checked = 'checked';
+			plot30DaysAgo();
+			})
+
+		function getIncidents(fromDate, toDate, tableName){
+			$("#"+tableName).html("<thead><tr><th>IP Address</th><th>TimeStamp</th></tr></thead>");
+			fromDate.setHours(0);
+			fromDate.setMinutes(0);
+			fromDate.setSeconds(0);
+			var rowHTML = "";
+			toDate.setHours(0);
+			toDate.setMinutes(0);
+			toDate.setSeconds(0);
+			$.getJSON("/infer/rest/listIncidents?from="+fromDate.toISOString()+"&to="+toDate.toISOString(),function(data){
+				$.each(data.statements, function (key,val) {
+					rowHTML += "<tr><td>"+val.object_t+"</td><td>"+val.time+"</td></tr>";
+				})
+				$("#"+tableName).append(rowHTML);
+			})
+		}
+		function getAttacks(fromDate, toDate, tableName){
+
+      $("#"+tableName).html("<thead><tr><th>Device ID</th><th>Timestamp</th></tr></thead>");
+			fromDate.setDate(fromDate.getDate());
+			fromDate.setHours(0);
+			fromDate.setMinutes(0);
+			fromDate.setSeconds(0);
+			var rowHTML = "";
+			toDate.setDate(toDate.getDate());
+			toDate.setHours(0);
+			toDate.setMinutes(0);
+			toDate.setSeconds(0);
+			$.getJSON("/infer/rest/listAttacks?from="+fromDate.toISOString()+"&to="+toDate.toISOString(),function(data){
+				$.each(data.statements, function (key,val) {
+					rowHTML += "<tr><td>"+val.object_t+"</td><td>"+val.time+"</td></tr>";
+				})
+				$("#"+tableName).append(rowHTML);
+			})
+		}
+
+		function plot30DaysAgo(){
+			var thirtyDaysAgo = new Date();
+			thirtyDaysAgo.setDate(thirtyDaysAgo.getDate()-30);
+			thirtyDaysAgo.setHours(0);
+			thirtyDaysAgo.setMinutes(0);
+			thirtyDaysAgo.setSeconds(0);
+			dateArrayAttack = new Array();
+			dateArrayInc = new Array();
+
+			var incDateVar;
+
+			var dataArrayInc = new Array();
+
+			var dataArrayAttack = new Array();
+
+			var dataPointInc;
+			var dataPointAttack;
+			$.getJSON("/infer/rest/listFacets?from="+thirtyDaysAgo.toISOString()+"&gap=24HOURS",function(data){
+				if(data!=null){
+					$.each(data.incidents, function (key, val) {
+						dataPointInc = new Array();
+						incDateVar = new Date(val.time);
+						incMonth = incDateVar.getMonth()+1;
+						incDate = incDateVar.getDate();
+						dataPointInc.push(incMonth+"/"+incDate);
+						dataPointInc.push(val.count);
+						dataArrayInc.push(dataPointInc);
+						dateArrayInc.push(incDateVar);
+		   			})
+					$.each(data.attacks, function (key, val) {
+						dataPointAttack = new Array();
+						attackDateVar = new Date(val.time);
+						attackMonth = attackDateVar.getMonth()+1;
+						attackDate = attackDateVar.getDate();
+						dataPointAttack.push(attackMonth+"/"+attackDate);
+						dataPointAttack.push(val.count);
+						dataArrayAttack.push(dataPointAttack);
+						dateArrayAttack.push(attackDateVar);
+		    			})
+				}
+
+			var options = {
+		      		series: {
+					bars: {
+						show: true,
+						barWidth: 0.6,
+						align: "center"
+					}
+				},
+					xaxis: {
+						mode: "categories",
+						tickLength: 0
+					},
+				grid: {
+				hoverable: true,
+				clickable: true
+			},
+			};
+			plot = $.plot($('#graph'), [{data: dataArrayInc, label:"IncidentsMonth"},{data:dataArrayAttack,label:"AttacksMonth"}], options);
+
+
+			})
+		}
+				$("#graph").bind("plotclick", function (event, pos, item) {
+					if (item) {
+						console.debug(" - click point " + dateArrayInc[item.dataIndex] + " in " + item.series.label);
+						var nextDate = new Date();
+						if(item.series.label.indexOf('Month')>0){
+						nextDate.setDate(dateArrayInc[item.dataIndex].getDate()+1);
+						}
+						else if(item.series.label.indexOf('Year')>0){
+						nextDate.setMonth(dateArrayInc[item.dataIndex].getMonth());
+						}
+
+						getIncidents(dateArrayInc[item.dataIndex],nextDate,"incidentsTableGraph");
+						getAttacks(dateArrayInc[item.dataIndex],nextDate,"attacksTableGraph");
+
+
+
+
+					}
+				});
+
+
+		function plotOneYearAgo(){
+			dateArrayAttack = new Array();
+			dateArrayInc = new Array();
+
+			var oneYearAgo = new Date();
+			oneYearAgo.setYear(oneYearAgo.getFullYear()-1);
+			oneYearAgo.setDate(1);
+			oneYearAgo.setHours(0);
+			oneYearAgo.setMinutes(0);
+			oneYearAgo.setSeconds(0);
+			var incDateVar;
+
+			var dataArrayInc = new Array();
+			var dataArrayAttack = new Array();
+			var dataPointInc;
+			var dataPointAttack;
+			$.getJSON("/infer/rest/listFacets?from="+oneYearAgo.toISOString()+"&gap=1MONTH",function(data){
+				if(data!=null){
+					$.each(data.incidents, function (key, val) {
+						dataPointInc = new Array();
+						incDateVar = new Date(val.time);
+						incMonths = incDateVar.getMonth()+1;
+						incYears = incDateVar.getFullYear();
+						dataPointInc.push(incMonths+"-"+incYears);
+						dataPointInc.push(val.count);
+						dataArrayInc.push(dataPointInc);
+						dateArrayInc.push(incDateVar);
+		   			})
+					$.each(data.attacks, function (key, val) {
+						dataPointAttack = new Array();
+						attackDateVar = new Date(val.time);
+						attackMonths = attackDateVar.getMonth()+1;
+						attackYears = attackDateVar.getFullYear();
+						dataPointAttack.push(attackMonths+"-"+attackYears);
+						dataPointAttack.push(val.count);
+						dataArrayAttack.push(dataPointAttack);
+						dateArrayAttack.push(attackDateVar);
+		    			})
+				}
+
+			var options = {
+		      		series: {
+					bars: {
+						show: true,
+						barWidth: 0.6,
+						align: "center"
+					}
+				},
+					xaxis: {
+						mode: "categories",
+						tickLength: 0
+					},
+			grid: {
+				hoverable: true,
+				clickable: true
+			},
+			};
+		    	$.plot($('#graph'), [{data: dataArrayInc, label:"IncidentsYear"},{data:dataArrayAttack,label:"AttacksYear"}], options);
+			})
+		}
+	});
+
+	</script>
+
+    <script type="text/javascript">
+
+
+ 	$(function () {
+
+
+function getURIHash(hashString){
+		var vars = [], hash;
+		vars[hashString]="";
+		var q = document.URL.split('?')[1];
+
+		if(q != undefined){
+			q = q.split('&');
+			for(var i=0;i<q.length;i++){
+			hash= q[i].split('=');
+			hash[1]=decodeURIComponent(hash[1]);
+			vars.push(hash[1]);
+			vars[hash[0]] = hash[1];
+			}
+		}
+		return vars[hashString];
+
+}
+ 		var facetsAllNames = new Array();
+ 		var facetsAllNumbers = new Array();
+ 		var temp;
+ 		var dataTypeAutocomplete;
+ 		var dataTypeFacet;
+ 		var dataTypeSearch;
+ 		var temp1,temp2,temp3;
+ 		var columnReify="(3)";
+		dataTypeSearch = getURIHash('search');
+		dataTypeFacet = getURIHash('facet');
+
+
+	    $("#autoNameCategoryOrganic").autocomplete({
+                source: function (request, response) {
+                dataTypeSearch=$('input[name="searchType"]:checked').val();
+                	$.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&wt=json&q=predicate_t%3A" + dataTypeSearch + "*&fq=object_t%3A"+ request.term + "*&start=0&rows=10&fl=%2Csubject_t%2Cpredicate_t%2Cobject_t%2C"+dataTypeFacet+"",
+                		  function (data) {
+					      response($.map(data.response.docs, function (item) {
+                              	 return {
+                                  	 label:item.object_t,
+                                     value:item.object_t,
+                                  	 id:item.subject_t,
+                                  	 facet:item[dataTypeFacet]
+                              	 }
+                               }));
+                           }
+                	);
+              	},
+                select: function( event, ui ) {
+                	if (ui.item) {
+           				$('#type').html('<a href="#&URI='+ui.item.id+'">'+ui.item.value+'</a>');
+                		$('#values').html("");
+           				$('#products').html("");
+
+       					getURIDetails(ui.item.id);
+
+       					}
+
+				}
+            });
+
+        $(document).on('click', '#hierarchy tr', function() {
+
+        	var facetName=$(this).find('td:first').find('a:first').attr('href').replace('#&facet','');
+        	var rowNumber=$(this).index();
+
+        	$('#hierarchy').find("tr:gt("+rowNumber+")").remove();
+        	$('#type').html("Choose Below")
+        	$('#products').html("");
+        	$('#values').html("");
+
+		    $.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&fl=id&start=0&rows=100&q="+dataTypeFacet+":" + facetName,
+           		function (data) {
+					$.each(data.response.docs, function (key, val) {
+                		$.getJSON("http://" + location.hostname + ":8080/infer/rest/listStatements?subject=" + encodeURIComponent(val.id), function(data) {
+	       					var imageHTML;
+	       					var nameHTML;
+	       					var tempHTML;
+	       					var thirdColumnHTML;
+	       					var uriHTML=val.id;
+
+	    					$.each(data.statements,function(key2, val2){
+	       						obj=val2.object_t;
+	       						sub=val2.subject_t;
+	       						pred=val2.predicate_t;
+
+
+
+
+				    			})
+							})
+
+
+							});//innermost getJSON
+                 }) //each statement for each product
+               });//inner get JSON brackets
+
+
+ 		//Reification
+        $(document).on('click',"#values td:nth-child"+columnReify, function(){
+        	var uriReifIdArray=$($(this).find('a:first')).attr('href').replace('#','').split('&');
+        	var uri = uriReifIdArray[0].substring(uriReifIdArray[0].indexOf('=')+1).replace('#','%23');
+        	var reifId = uriReifIdArray[1].substring(uriReifIdArray[1].indexOf('=')+1).replace('#','%23');
+
+        	$('#type').append("-->"+$(this).siblings('td:first-child').text()+ " (Reify)");
+        	$('#values').html("");
+        	$.getJSON('http://' + location.hostname + ':8080/infer/rest/listReified?reifId="'+reifId+'"', function(data) {
+
+        			$.each(data.statements,function(key, val){
+   						productDetailTable(val.r_object_t,val.r_subject_t,val.r_predicate_t,null,uri);
+        			})
+        	})
+
+
+
+        });
+        $(document).on('click',"#values td:nth-child(2)", function(){
+
+        		if($($(this).find('a:first')).attr('href')){
+        			var uri = $($(this).find('a:first')).attr('href').replace('#&URI=','');
+		        	var typeText = '<a href="#&URI='+uri+'">'+uri.substring(uri.lastIndexOf('#')+1)+'</a>'
+		        	$('#type').append("-->"+typeText);
+		        	$('#values').html("");
+		        	getURIDetails(uri);
+		        	}
+
+		  });
+
+		$(document).on('click',"#type a", function(){
+        	var uri = $(this).attr('href').replace('#&URI=','');
+        	var typeString = $('#type').html();
+
+        	if($('#type').find('a:first').html()==$(this).html()){
+        		$('#products').html("");
+        	}
+        	//it looks to see if there is an arrow after the clicked on URI
+        	if(typeString.substring(typeString.indexOf(uri)).indexOf('--&gt')>0){
+        		//if there is, it does some finegling to get the string all the way
+        		//up to that final arrow.
+        		typeString.substring(typeString.indexOf(uri)).indexOf('--&gt');
+        		var indexTypeEnd=typeString.substring(0,typeString.indexOf(uri)).length+typeString.substring(typeString.indexOf(uri)).indexOf('--&gt');
+        		$('#type').html(typeString.substring(0,indexTypeEnd));
+        	}
+        	$('#values').html("");
+        	getURIDetails(uri);
+		})
+
+        $(document).on('click',"#products tr", function() {
+
+
+        	var href = $($(this).find('td:first').find('a:first')).attr('href');
+        	var uri = href.substring(href.indexOf('&objID'),href.indexOf('&URI')).replace('&objID=','');
+
+        	$('#type').html("Type: " + $($(this).find('td:first')).text());
+         	$('#values').html("");
+   			$('#products').html("");
+
+				if(uri){
+
+					getURIDetails(uri);
+					$.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&fl="+dataTypeFacet+"&start=0&rows=10&q=id:" + uri, function (data){
+			          facetTable(data.response.docs[0][dataTypeFacet]);
+					})
+				}
+		       	else{
+		       		$('#values').append('<td>Not Found</td>')
+		       	}
+
+		  })
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+	  function getURIDetails (uri){
+        	$.getJSON("http://" + location.hostname + ":8080/infer/rest/listStatements?subject=\"" + uri.replace('#','%23')+"\"", function(data) {
+				var obj;
+				var sub;
+				var pred;
+				var reifId;
+				var tellMeMore = "";
+				var type = "Unknown";
+				var image;
+				var nameHTML;
+				var productIdHTML;
+				var imageHTML;
+				var breadcrumbHTML;
+				var tempHTML;
+				var thirdColumnHTML;
+
+				$.each(data.statements,function(key,val){
+						obj=val.object_t;
+						sub=val.subject_t;
+						pred=val.predicate_t;
+						reifId=val.reifiedId_t;
+
+					productDetailTable(obj,sub,pred,reifId,uri);
+
+
+				})
+
+			})
+        }
+
+	    //Table Functions
+
+
+
+        function productDetailTable(obj,sub,pred,reifId,uri){
+    				var originalSub=sub;
+        			var originalPred=pred;
+    				var originalObj=obj;
+
+        			//Object Statements: if and else-if to make web pages hyperlinks and show images
+    					if (obj.indexOf('http://')>=0 && (obj.indexOf('.jpg')>=0||obj.indexOf('.gif')>=0)){
+    						imageHTML = '<img src="' + obj + '" alt="' + obj + '"width="100" height="100">';
+    					}
+    					else if(pred.indexOf('rdf-syntax-ns#type')>=0){}
+    					else if(obj.indexOf('http:')==0||obj.indexOf('https:')==0){
+    						obj = '<a href="#&URI='+originalObj+'">Tell Me More</a>';
+    						}
+    					else if(obj.indexOf(' ')<0 && obj.split(":").length>2 && obj.indexOf('T')<0){
+    						obj = '<a href="#&URI='+originalObj+'">Tell Me More</a>';
+    					}
+    					else if(obj.indexOf('\n')>=0){
+    						obj = obj.replace(/\n/g,'<br />');
+    					}
+
+    					//Predicate Statements: if statement to remove schema.org from predicate
+    					//CHANGED TO MATCH DATA
+    					if (pred.indexOf('http:')==0||pred.indexOf('https:')==0){
+    						pred = pred.substring(pred.lastIndexOf('/')+1);
+    					}
+
+    					if (pred.indexOf('#')>=0){
+    						pred = pred.substring(pred.lastIndexOf('#')+1);
+    					}
+
+    					if(pred.indexOf('resultTerms')>=0||pred.indexOf('startTerms')>=0){
+    							var myObject = eval('(' + originalObj + ')');
+    							obj = "<table><tr><td>Description</td><td>Address</td><td>User Rating</td></tr>";
+    							$.each(myObject.d.results, function (key,val){
+    								obj+=('<tr><td>'+val.Description+'</td><td>'+val.Address+'</td><td>'+val.UserRating+'</td></tr>');
+    							})
+
+    							obj+=("</table>");
+    					}
+
+
+
+
+    					if(!reifId){
+    						$('#values').append('<tr><td>'+pred+'</td><td>'+obj+'</td><td></td></tr>');
+    	    			}
+    					else{
+    						$('#values').append('<tr><td>'+pred+'</td><td>'+obj+'</td><td><a href="#uri='+uri+'&reifId='+reifId+'">Source</a> </td></tr>');
+    					}
+    		 }
+
+
+
+		$("#error").ajaxError(function(event, request, settings){
+  		$(this).append("<li>Error requesting page " + settings.url + "</li>");
+		});
+
+    });
+
+
+
+    </script>
+</head>
+<body>
+
+    <img src="css/open_inference_logo.png" alt="Open Inference" height='30%' width='30%'>
+	<div id="header">
+		<h2>Intrusion Detection</h2>
+	</div>
+<div id="content">
+<form>
+<div id="radio">
+<input type="radio" id="radio2" name="radio" checked><label for="radio2">Last Month</label>
+<input type="radio" id="radio3" name="radio"><label for="radio3">Last Year</label>
+<input type="radio" id="radio4" name="radio" checked><label for="radio4">Table View</label>
+<input type="radio" id="radio5" name="radio" checked><label for="radio5">Autocomplete</label>
+</div>
+		<div id="graphcontainer" class="demo-container">
+			<div id="graph" class="demo-placeholder"></div>
+		<br>
+		<div id="tablecontainerGraph">
+			<h2>Attacks</h2>
+			<table cellpadding="0" cellspacing="0" border="0" class="showTable" id="attacksTableGraph">
+			</table>
+			<h2>Incidents</h2>
+			<table cellpadding="0" cellspacing="0" border="0" class="showTable" id="incidentsTableGraph">
+			</table>
+		</div>
+		</div>
+		<div id="tablecontainer">
+			<p>From Date: <input type="text" id="datepicker"></p>
+			<p>To Date: <input type="text" id="datepicker2"></p>
+
+			<h2>Attacks</h2>
+			<table cellpadding="0" cellspacing="0" border="0" class="showTable" id="attacksTable">
+			</table>
+			<h2>Incidents</h2>
+			<table cellpadding="0" cellspacing="0" border="0" class="showTable" id="incidentsTable">
+			</table>
+		</div>
+        <br></br>
+        <div id="autocompletecontainer">
+            <div style="text-align: center; width: 100%;">
+<div style="float:left; " id=banner>   </div>
+</div>
+<div style="clear:both"></div>
+<div style ="width: 100%;">
+
+     <div style="clear:both"></div>
+<div style ="width: 20%; float:left;">
+  <form>
+    <input type="radio" name="searchType" value="hasSourceIP"
+    checked='checked'>IP Address<br>
+    <input type="radio" name="searchType" value="hasSourceDeviceId">Device Id
+  </form>
+</div>
+
+<div style="width:79%; float:right ;" id="mainBar">
+     <div style="clear:both"></div>
+    <div style="float: left; width: 20%;">
+
+  <input type="text" name="autoNameCategoryOrganic"
+        id="autoNameCategoryOrganic" />
+    </div>
+
+    <div style="clear:both"></div>
+    <h2 style="float:left; " id="type"></h2>
+    <div style="clear:both"></div>
+
+
+<table id="products" class="products"></table>
+<div id="tableScroll"><table id="values" class="values"></table></div>
+<br></br>
+<div id="error"></div>
+</div>
+</div>
+		</div>
+
+	</div>
+
+</body>
+</html>
+
+
+
+
+

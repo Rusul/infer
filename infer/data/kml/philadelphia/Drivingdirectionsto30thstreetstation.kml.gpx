@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2014-02-27T05:04:35Z</time>
+<bounds minlat="39.953396000" minlon="-75.181068000" maxlat="39.956078000" maxlon="-75.163727000"/>
+<wpt lat="39.953396000" lon="-75.163727000">
+  <ele>0.000000</ele>
+  <name>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</name>
+  <cmt>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</cmt>
+  <desc>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</desc>
+</wpt>
+<wpt lat="39.955620000" lon="-75.181007000">
+  <ele>0.000000</ele>
+  <name>To: 30th street station</name>
+  <cmt>To: 30th street station</cmt>
+  <desc>To: 30th street station</desc>
+</wpt>
+<trk>
+  <name>Driving directions to 30th street station</name>
+<trkseg>
+<trkpt lat="39.953396000" lon="-75.163727000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.953457000" lon="-75.163918000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.953819000" lon="-75.166603000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.954178000" lon="-75.169785000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955063000" lon="-75.176430000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955559000" lon="-75.180481000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955593000" lon="-75.180611000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955708000" lon="-75.180702000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955948000" lon="-75.180641000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955948000" lon="-75.180641000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.956055000" lon="-75.180779000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.956078000" lon="-75.180969000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.956051000" lon="-75.181053000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955967000" lon="-75.181068000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955841000" lon="-75.180977000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="39.955620000" lon="-75.181007000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

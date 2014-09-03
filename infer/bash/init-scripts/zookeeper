@@ -1,0 +1,28 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          cluster
+# Required-Start:    $syslog
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+### END INIT INFO
+
+N=/etc/init.d/zookeeper
+
+set -e
+
+case "$1" in
+  start)
+	su - scott -c "cd /home/scott/pkg/zookeeper-3.4.5/bin; ./zkServer.sh start"
+	;;
+  stop)
+	su  - scott -c "cd /home/scott/pkg/zookeeper-3.4.5/bin; ./zkServer.sh stop"
+	;;
+  *)
+	echo "Usage: $N {start|stop|restart|force-reload|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

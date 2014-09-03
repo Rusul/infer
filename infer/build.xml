@@ -1,0 +1,696 @@
+<project name="infer" default="build-war" basedir=".">
+ 
+  <!-- Configuration properties -->
+  <!-- ======================== -->
+  <property environment="env" />
+
+  <property file="build.properties"/>
+  <property file="load.properties"/>
+  <property file="person.properties"/>
+  <!-- Source code locations -->
+  <property name="src.dir"         	value="util/src"/>
+  <property name="test.dir"        	value="infer-functional-tests"/>
+  <property name="data.dir"        	value="data"/>
+  <property name="classes.dir"     	value="util/classes"/>
+
+  <property name="war.src.dir"         	value="infer-war/src/java"/>
+  <property name="war.classes.dir"     	value="infer-war/src/webapp/WEB-INF/classes"/>
+  <property name="war.lib.dir"         	value="war-lib"/>
+  <property name="test.lib.dir"        	value="infer-functional-tests/lib"/>
+  <property name="test.classes.dir"    	value="infer-functional-tests/classes"/>
+  <property name="test.src.dir"        	value="infer-functional-tests/src"/>
+
+	<property name="infer.lib.dir" value="dist" />
+
+  <!-- Classpaths -->
+  <path id="war.classpath">
+    <fileset dir="${war.lib.dir}" includes="*.jar"/>
+    <pathelement location="${war.classes.dir}" />
+    <pathelement location="${classes.dir}" />
+  </path>
+
+  <path id="test.classpath">
+    <fileset dir="${test.lib.dir}" includes="*.jar"/>
+    <pathelement location="${test.classes.dir}" />
+  </path>
+
+	<path id="classpath.tools">
+		<pathelement location="${classes.dir}" />
+		<fileset dir="${war.lib.dir}" includes="**/*.jar" />
+		<fileset dir="${infer.lib.dir}" includes="**/*util*.jar" />
+	</path>
+
+
+  <!-- Source code preparation targets -->
+  <!-- =============================== -->
+
+  <target name="clean-classes"
+    description="Remove all contents from ${classes.dir} to ensure a clean build">
+    <delete dir="${test.classes.dir}"/>
+    <delete dir="${war.classes.dir}"/>
+    <delete dir="${classes.dir}"/>
+    <mkdir dir="${classes.dir}"/>
+    <mkdir dir="${test.classes.dir}"/>
+    <mkdir dir="${war.classes.dir}"/>
+  </target>
+
+  <!-- Primary Java build targets -->
+
+  <target name="compile-util" 
+    description="Compile the copied source tree into class files under ${classes.dir}" depends="runSchemaGen">
+    <delete file="dist/infer-util.jar"/>
+    <mkdir dir="${classes.dir}"/>
+    <javac
+       srcdir="${src.dir}"
+       destdir="${classes.dir}"
+       debug="true"
+       >
+      <classpath refid="war.classpath" />
+    </javac>
+    <jar destfile="dist/infer-util.jar" basedir="util/classes" excludes="**/*.properties, **/*.ttl, **/*.log"/>
+  </target>
+
+  <target name="compile-tests" 
+    description="Compile the tests under ${test.classes.dir}" depends="compile-util">
+    <mkdir dir="${test.classes.dir}"/>
+    <javac
+       srcdir="${test.src.dir}"
+       destdir="${test.classes.dir}"
+       debug="true"
+       >
+      <classpath refid="test.classpath" />
+      <classpath refid="war.classpath" />
+    </javac>
+  </target>
+
+  <target name="run-optimize"
+    description="Optimize The Solr Index">
+    <exec executable="curl"> 
+    	<arg line="${OPTIMIZE_CMD}"/> 
+    </exec> 
+  </target>
+
+  <target name="run-reason"
+    description="load the data through a web service" depends="compile-util">
+    <mkdir dir="${classes.dir}"/>
+    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/reasoning/result01.nt" />
+    </java>
+    <antcall target="run-optimize"/>
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/reasoning/small.nt" />
+    </java>
+    <antcall target="run-optimize"/>
+  </target>
+
+  <target name="run-ces-data"
+    description="load the data through a web service" depends="compile-util">
+    <mkdir dir="${classes.dir}"/>
+    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/ces_abox" />
+    </java>
+    <antcall target="run-optimize"/>
+  </target>
+	
+
+  <target name="run-small"
+    description="load the data through a web service" depends="compile-util">
+    <mkdir dir="${classes.dir}"/>
+    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/reasoning/small.nt" />
+    </java>
+    <antcall target="run-optimize"/>
+  </target>
+	
+	  <target name="run-event"
+	    description="load the data through a web service" depends="compile-util">
+	    <mkdir dir="${classes.dir}"/>
+	    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+	    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/event.load.log">
+	 	<classpath>
+		 	<path refid="war.classpath"/>
+	 	</classpath>
+		<arg value="data/reasoning/event.nt" />
+	    </java>
+	    <antcall target="run-optimize"/>
+	  </target>
+	
+	  <target name="run-johnwilliams-event"
+	    description="load the data through a web service" depends="compile-util">
+	    <mkdir dir="${classes.dir}"/>
+	    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+	    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/event.johnwilliams.log">
+	 	<classpath>
+		 	<path refid="war.classpath"/>
+	 	</classpath>
+		<arg value="data/auto/inprogress/John_Williams.nt" />
+	    </java>
+	    <antcall target="run-optimize"/>
+	  </target>
+	
+	  <target name="run-likes"
+	    description="load the data through a web service" depends="compile-util">
+	    <mkdir dir="${classes.dir}"/>
+	    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+	    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.log">
+	 	<classpath>
+		 	<path refid="war.classpath"/>
+	 	</classpath>
+		<arg value="data/reasoning/likes.nt" />
+	    </java>
+	    <antcall target="run-optimize"/>
+	  </target>
+
+  <target name="run-ces-auto-in-progress"
+    description="load the data through a web service" depends="compile-util">
+    <mkdir dir="${classes.dir}"/>
+    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.load.auto0.in.progress.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/ces_abox/inprogress/" />
+    </java>
+    <antcall target="run-optimize"/>
+</target>
+
+
+  <target name="load-persona"
+    description="load the data through a web service" depends="compile-util">
+    <mkdir dir="${classes.dir}"/>
+    <copy toFile="${classes.dir}/load.properties" overwrite="true" file="load.properties"/> 
+
+    <java classname="infer.util.LoadAboxWebService" fork="true" output="${classes.dir}/webservice.persona.log">
+ 	<classpath>
+	 	<path refid="war.classpath"/>
+ 	</classpath>
+	<arg value="data/persona.nt" />
+    </java>
+    <antcall target="run-optimize"/>
+</target>
+
+  <target name="run-clear-index"
+    description="run the clear command">
+    <exec executable="curl"> 
+    	<arg line="${PURGE_CMD}"/> 
+    </exec> 
+  </target>
+
+  <target name="run-schema"
+    description="run the schema program" depends="compile-util">
+    <copy todir="${classes.dir}" overwrite="true" file="load.properties"/> 
+    <java classname="search.SolrSchema" fork="true" output="${classes.dir}/schema.txt">
+ 	<classpath>
+	 	<path refid="classpath"/>
+ 	</classpath>
+    </java>
+  </target>
+
+  <target name="compile-war" 
+    description="Compile the copied source tree into class files under ${war.classes.dir}"  depends="compile-util">
+    <delete dir="${war.classes.dir}"/>
+    <mkdir dir="${war.classes.dir}"/>
+    <javac
+       srcdir="${war.src.dir}"
+       destdir="${war.classes.dir}"
+       debug="true"
+       >
+      <classpath refid="war.classpath" />
+    </javac>
+  </target>
+
+  <target name="deploy" description="deploy to web server" depends="build-war">
+    <copy todir="${conf.dir}" overwrite="true" file="conf/jaas.config"/> 
+    <copy todir="${conf.dir}" overwrite="true" file="conf/server.xml"/> 
+    <copy todir="${webapps.dir}" overwrite="true" file="dist/${deploy.filename}"/> 
+
+  </target>
+
+  <target name="run-tests"
+    description="run the junit tests using data and results dirs" depends="compile-tests">
+     <copy todir="${test.classes.dir}" overwrite="true"> 
+	<fileset dir="${test.dir}">
+    		<include name="load.properties"/>
+    		<include name="content.txt"/>
+  	</fileset>
+     </copy>
+
+ 	<junit printsummary="yes" haltonfailure="no">
+        	<formatter type="xml"/>
+      		<classpath refid="test.classpath" />
+      		<classpath refid="war.classpath" />
+        	<test fork="yes" name="infer.test.TestSelect" todir="${test.classes.dir}"/>  
+
+        	<test fork="yes" name="infer.test.TestIntrude" todir="${test.classes.dir}" />  
+    	</junit>
+
+  </target>
+
+  <target name="system-test" description="do a system test" depends="delete-deploy, deploy, wait-for-deploy, run-clear-index, run-tests">
+  </target>
+
+  <target name="wait-for-deploy" description="wait for deployment of infer war file">
+    <sleep seconds="20"/>
+  </target>
+
+  <target name="delete-deploy" description="delete the deploy">
+    <delete dir="${webapps.dir}/infer"/>
+    <delete file="${webapps.dir}/infer.war"/>
+    <exec dir="${webapps.dir}/../bin" executable="bash" os="Linux">
+    	<arg line="./shutdown.sh"/>
+    </exec>
+    <sleep seconds="5"/>
+    <exec dir="${webapps.dir}/../bin" executable="bash" os="Linux">
+    	<arg line="./startup.sh "/>
+    </exec>
+  </target>
+
+  <target name="build-war" description="build the infer war file" depends="compile-war">
+     	<copy todir="${war.classes.dir}" overwrite="true" file="load.properties"/> 
+     	<copy todir="${war.classes.dir}" overwrite="true"> 
+		<fileset dir="data" includes="*.nt" />
+	</copy>
+        <war destfile="dist/${deploy.filename}" 
+                webxml="infer-war/src/webapp/WEB-INF/web.xml">
+                <fileset dir="infer-war/src/webapp"/>
+                <lib dir="${war.lib.dir}" excludes="servlet-api.jar"/>
+                <lib dir="dist" includes="infer-util.jar"/>
+                <classes dir="${war.classes.dir}" />
+        </war>
+  </target>
+	
+<!--ONTOLOGY-->
+
+<target name="runSchemaGen" description="Generate the ontologies">
+    <mkdir dir="dist"/>
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="IDS.owl" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="IDS" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--ontology" />
+		</java>
+
+
+
+
+
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="linkedevents.owl" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="LinkedEvents" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--ontology" />
+		</java>
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="Provenance.owl" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="Provenance" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--ontology" />
+		</java>
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="vcard.owl" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="Vcard" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--ontology" />
+		</java>
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="AutoIE.owl" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="AutoIE" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--ontology" />
+		</java>
+		<java classname="jena.schemagen">
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="-i" />
+			<arg value="sensor-jpa.daml" />
+			<arg value="-o" />
+			<arg value="util/src/" />
+			<arg value="-n" />
+			<arg value="Sensor" />
+			<arg value="--package" />
+			<arg value="infer.util.generated" />
+			<arg value="--daml" />
+		</java>
+	</target>
+	
+	<target name="abox-small" description="create Abox for User Preferences" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		<java classname="infer.util.abox.LoadSmall" output="${classes.dir}/abox.small.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="result" />
+			<arg value="small" />
+		</java>
+	</target>
+	<target name="abox-persona" description="create Abox for User Preferences" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		    <copy todir="${classes.dir}" file="load.properties"/>
+		<java classname="infer.util.abox.LoadPersonas" output="${classes.dir}/abox.persona.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="result" />
+			<arg value="/result01" />
+		</java>
+	</target>
+	
+	<target name="abox-likes" description="create Abox from Facebook Likes" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		    <copy todir="${classes.dir}" file="../infer/load.properties"/>
+		<java classname="infer.util.abox.LoadLikesNoInf" output="${classes.dir}/likes.abox.load.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="result" />
+			<arg value="/likes" />
+		</java>
+	</target>
+
+	<target name="abox-person-John-Williams" description="create Abox for User By VIN" depends="compileAbox">
+    		<copy todir="${classes.dir}" overwrite="true" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" overwrite="true" file="logging.properties"/> 
+    		<copy tofile="${classes.dir}/person.properties" overwrite="true" file="person.properties"/> 
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value=""/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T00:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}_IN_PROGRESS" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_IN_PROGRESS_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-02-04T00:44:32.10Z"/>
+
+		</java>
+	</target>
+
+
+
+
+	<target name="abox-person-location" description="create Abox for User By VIN" depends="compileAbox">
+    		<copy todir="${classes.dir}" overwrite="true" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" overwrite="true" file="logging.properties"/> 
+    		<copy tofile="${classes.dir}/person.properties" overwrite="true" file="person.properties"/> 
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.mary.frank.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${mary.frank.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${mary.frank.person.result.prefix}"/>
+			<arg value="${mary.frank.person.uri}"/>
+			<arg value="${mary.frank.person.vin}"/>
+			<arg value="${close.def}"/>
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.frank.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.frank.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.frank.person.result.prefix}"/>
+			<arg value="${john.frank.person.uri}"/>
+			<arg value="${john.frank.person.vin}"/>
+			<arg value="${close.def}"/>
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_1_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T00:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_2_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T02:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_3_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T03:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_4_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T12:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_5_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T18:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.john.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${john.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${john.williams.person.result.prefix}_6_"/>
+			<arg value="${john.williams.person.uri}"/>
+			<arg value="${john.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+			<arg value="2014-01-04T22:44:32.10Z"/>
+
+		</java>
+		<java classname="infer.util.abox.LoadLocationPerPerson" output="${classes.dir}/abox.per.person.lisa.williams.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${lisa.williams.person.data.dir}" />
+			<arg value="result" />
+			<arg value="${lisa.williams.person.result.prefix}"/>
+			<arg value="${lisa.williams.person.uri}"/>
+			<arg value="${lisa.williams.person.vin}"/>
+			<arg value="${close.def}"/>
+		</java>
+	</target>
+
+	<target name="abox-location" description="create Abox for User Preferences" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		<java classname="infer.util.abox.LoadLocation" output="${classes.dir}/abox.location.log">
+     			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="data" />
+			<arg value="result" />
+		</java>
+	</target>
+	<target name="abox-location-google" description="create Abox for User Preferences" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="rules.txt"/> 
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		<java fork="true" classname="infer.util.abox.LoadLocationGoogleMap" output="${classes.dir}/abox.location.google.log" maxmemory="2048m">
+			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="${data.dir}" />
+			<arg value="${result.dir}" />
+			<arg value="${start.datetime}" />
+			<arg value="${distance}" />
+			<arg value="${ms.between}" />
+			<arg value="${output.file.prefix}" />
+		</java>
+	</target>
+
+	<target name="abox-location-google-pieces" description="create Abox for User Preferences" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		<java fork="true" classname="infer.util.abox.LoadLocationGoogleMapPieces" output="${classes.dir}/abox.location.google.pieces.log" maxmemory="2048m">
+			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="data" />
+			<arg value="result" />
+		</java>
+	</target>
+
+	<target name="abox-event" description="create Abox for Event" depends="compileAbox">
+    		<copy todir="${classes.dir}" file="logging.properties"/> 
+		<java fork="true" classname="infer.util.abox.LoadEvent" output="${classes.dir}/abox.event.log" maxmemory="2048m">
+			<sysproperty key="java.util.logging.config.file" value="${basedir}/logging.properties"/> 
+
+			<classpath>
+				<path refid="classpath.tools" />
+			</classpath>
+			<arg value="result" />
+			<arg value="event" />
+		</java>
+	</target>
+
+	<target name="compileAbox" description="compile Abox" depends="runSchemaGen">
+    		<mkdir dir="result"/>
+    		<copy todir="${classes.dir}" file="AutoIE.owl"/> 
+    		<copy todir="${classes.dir}" file="vcard.owl"/> 
+    		<copy todir="${classes.dir}" file="Provenance.owl"/> 
+    		<copy todir="${classes.dir}" file="sensor-jpa.daml"/> 
+    		<mkdir dir="${classes.dir}"/>
+    		<javac
+       			srcdir="${src.dir}"
+       			destdir="${classes.dir}"
+       			debug="true"
+       			optimize="${java.optimize}"
+      		 					>
+      			<classpath refid="classpath.tools" />
+    		</javac>
+	</target>
+ 	<target name="clean"
+    		description="Remove all contents from ${classes.dir} to ensure a clean build">
+    		<delete dir="${classes.dir}"/>
+    		<mkdir dir="${classes.dir}"/>
+    		<delete dir="result"/>
+    		<mkdir dir="result"/>
+  	</target>
+
+</project>

@@ -1,0 +1,6 @@
+<http://www.w3.org/2006/vcard/ns#VCardJohn_Williams-john.williams.inferces@gmail.com> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#driverDrivesARoute> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479437128> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile2C7RC1BG3DR614265> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#drives> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479437128> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile2C7RC1BG3DR614265> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#isOperatedBy> <http://www.w3.org/2006/vcard/ns#VCardJohn_Williams-john.williams.inferces@gmail.com> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479437128> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeHasAsADriver> <http://www.w3.org/2006/vcard/ns#VCardJohn_Williams-john.williams.inferces@gmail.com> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479437128> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#isDrivenBy> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#Automobile2C7RC1BG3DR614265> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#Route1393479437128> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#routeStatus> "INPROGRESS" .

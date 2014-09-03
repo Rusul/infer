@@ -1,0 +1,36 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          Java Web Server
+# Required-Start:    $local_fs $remote_fs $syslog $named $network $time
+# Required-Stop:     $local_fs $remote_fs $syslog $named $network
+# Should-Start:      postgresql mysql clamav-daemon postgrey spamassassin saslauthd dovecot
+# Should-Stop:       postgresql mysql clamav-daemon postgrey spamassassin saslauthd dovecot
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: start and stop tomcat
+# Description:       tomcat is a web server 
+### END INIT INFO
+
+
+
+### END INIT INFO
+
+N=/etc/init.d/tomcat
+
+set -e
+
+case "$1" in
+  start)
+	su - scott -c "cd /home/scott/pkg/apache-tomcat-7.0.27/bin; ./catalina.sh start"
+	;;
+  stop)
+	su - scott -c "cd /home/scott/pkg/apache-tomcat-7.0.27/bin; ./catalina.sh stop"
+	;;
+  *)
+	echo "Usage: $N {start|stop|restart|force-reload|status}" >&2
+	exit 1
+	;;
+esac
+
+exit 0

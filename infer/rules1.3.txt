@@ -1,0 +1,35 @@
+@prefix ie: http://www.compscii.com/ontologies/0.1/AutoIE.owl# 
+@prefix Vcard: http://www.w3.org/2006/vcard/ns#
+@prefix ids: http://www.compscii.com/ontologies/0.1/IDS.owl#
+
+
+[IndividualGetsGroupInterests:   (?x ie:memberOf ?y), (?y ie:hasGroupInterestOf ?z)  -> (?x ie:hasIndividualInterestOf ?z)]
+
+#[LikeTextSynonym:   (?l ie:opinionText ?y) -> synonym(?l ie:opinionSynonyms ?y)]
+
+#[LikeCategorySynonym:   (?l ie:opinionCategory ?y) -> synonym(?l ie:opinionSynonyms ?y)]
+
+[PersonLike:            (?p ie:describesLikesAs ?o), (?o ie:opinionCategory ?y) -> Like(?p ie:hasIndividualInterestOf ?z)]
+
+#[PointInterest:   (?a ie:isTrackedBy ?t), (?t Vcard:latitude ?l), (?t ie:pointStatus "places"), (?t Vcard:longitude ?o) -> Poi(?t ie:hasAsAPointOfInterest ?y)]
+
+[CalLocToDest:          noValue(?p ie:eventHasAsADestination ?t), (?p ie:eventHasAsALocation ?l) -> CalLocDest(?p ie:eventHasAsADestination ?t)]
+[CalTextToDest:         noValue(?p ie:eventHasAsALocation ?l), noValue(?p ie:eventHasAsADestination ?t), (?p ie:eventCommittedByPerson ?y), (?p ie:eventDescription ?l) -> CalTextDest(?p ie:eventHasAsADestination ?t)]
+#[ValCalTextToDest:      (?p ie:eventHasAsALocation ?l), (?p ie:eventHasAsADestination ?t), (?p ie:eventCommittedByPerson ?y), (?p ie:eventDescription ?l) -> CalTextDest(?p ie:eventHasAsADestination ?t)]
+
+
+[PointToSegment:        (?r ie:isTrackedBy ?p), (?p Vcard:latitude ?s), (?p Vcard:longitude ?m), (?p ie:trackPointWhen ?t), (?p ie:pointStatus "point") -> PointToSegment(?r ie:hasLineSegment ?l)]
+
+
+#[repeatBlacklist:   (?l ids:hasSourceDeviceId ?x) -> Blacklist(?l ids:hasSourceDeviceId ?x)]
+[addAttack: (?l ids:hasSourceDeviceId ?x),Blacklist(?x 4 24) ->(?a ids:isAttackedByID ?x)]
+
+
+[InferredMembership:  (?g ie:mandatoryInterestsForGroupInclusion ?i)
+        (?i ie:helpsIndividualDefine ?u)
+                 allValue(?g ie:mandatoryInterestsForGroupInclusion
+                                           ie:helpsIndividualDefine ?u)
+                         ->
+                                  (?u ie:memberOf ?g)]
+
+

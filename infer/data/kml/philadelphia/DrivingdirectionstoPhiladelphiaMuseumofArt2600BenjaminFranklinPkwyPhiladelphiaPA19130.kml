@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.2">
+<Document>
+  <name>Driving directions to Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</name>
+  <description><![CDATA[]]></description>
+  <Style id="style1">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Style id="style3">
+    <LineStyle>
+      <color>73FF0000</color>
+      <width>5</width>
+    </LineStyle>
+  </Style>
+  <Style id="style2">
+    <IconStyle>
+      <Icon>
+        <href></href>
+      </Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>From: Philadelphia City Hall, Broad St &amp; Market St, Philadelphia, Pennsylvania 19107</name>
+    <styleUrl>#style1</styleUrl>
+    <Point>
+      <coordinates>-75.163727,39.953396,0.000000</coordinates>
+    </Point>
+  </Placemark>
+  <Placemark>
+    <name>Driving directions to Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</name>
+    <styleUrl>#style3</styleUrl>
+    <ExtendedData>
+      <Data name="_SnapToRoads">
+        <value>true</value>
+      </Data>
+    </ExtendedData>
+    <LineString>
+      <tessellate>1</tessellate>
+      <coordinates>
+        -75.163727,39.953396,0.000000
+        -75.163918,39.953457,0.000000
+        -75.166206,39.953766,0.000000
+        -75.166206,39.953766,0.000000
+        -75.166557,39.954029,0.000000
+        -75.166367,39.954876,0.000000
+        -75.166367,39.954876,0.000000
+        -75.169662,39.957329,0.000000
+        -75.169785,39.957485,0.000000
+        -75.169823,39.957626,0.000000
+        -75.169807,39.957989,0.000000
+        -75.169807,39.957989,0.000000
+        -75.169975,39.958313,0.000000
+        -75.170235,39.958477,0.000000
+        -75.170525,39.958549,0.000000
+        -75.171143,39.958530,0.000000
+        -75.171509,39.958687,0.000000
+        -75.176811,39.962620,0.000000
+        -75.177017,39.962879,0.000000
+        -75.177139,39.963284,0.000000
+        -75.177139,39.963284,0.000000
+        -75.177483,39.964027,0.000000
+        -75.178757,39.965675,0.000000
+        -75.178757,39.965675,0.000000
+        -75.179352,39.966450,0.000000
+        -75.179352,39.966450,0.000000
+        -75.179543,39.966293,0.000000
+        -75.179695,39.966274,0.000000
+        -75.179817,39.966312,0.000000
+        -75.180519,39.966774,0.000000
+        -75.180763,39.966846,0.000000
+        -75.181038,39.966873,0.000000
+        -75.181305,39.966835,0.000000
+        -75.181496,39.966763,0.000000
+        -75.182014,39.966385,0.000000
+      </coordinates>
+    </LineString>
+  </Placemark>
+  <Placemark>
+    <name>To: Philadelphia Museum of Art, 2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130</name>
+    <styleUrl>#style2</styleUrl>
+    <Point>
+      <coordinates>-75.182014,39.966385,0.000000</coordinates>
+    </Point>
+  </Placemark>
+</Document>
+</kml>

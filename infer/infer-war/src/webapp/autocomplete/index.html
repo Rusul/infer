@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="../Scripts/jquery-1.7.2.js" type="text/javascript"></script>
+    <script src="../Scripts/jquery-ui-1.8.20.min.js" type="text/javascript"></script>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/themes/base/jquery.ui.autocomplete.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+  	
+
+ 	$(function () {
+
+
+function getURIHash(hashString){     
+		var vars = [], hash;	
+		vars[hashString]="";
+		var q = document.URL.split('?')[1];
+		
+		if(q != undefined){
+			q = q.split('&');
+			for(var i=0;i<q.length;i++){
+			hash= q[i].split('=');
+			hash[1]=decodeURIComponent(hash[1]);
+			vars.push(hash[1]);
+			vars[hash[0]] = hash[1];
+			}
+		}
+		return vars[hashString];
+
+}
+ 		var facetsAllNames = new Array();
+ 		var facetsAllNumbers = new Array();
+ 		var temp;
+ 		var dataTypeAutocomplete;  
+ 		var dataTypeFacet;
+ 		var dataTypeSearch;
+ 		var temp1,temp2,temp3;
+ 		var columnReify="(3)";
+		dataTypeSearch = getURIHash('search');
+		dataTypeFacet = getURIHash('facet');
+		if(!dataTypeSearch){dataTypeSearch='fn';}
+ 	
+	    $("#autoNameCategoryOrganic").autocomplete({
+                source: function (request, response) {
+                	$.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&wt=json&q=predicate_t%3A" + dataTypeSearch + "*&fq=object_t%3A"+ request.term + "*&start=0&rows=10&fl=%2Csubject_t%2Cpredicate_t%2Cobject_t%2C"+dataTypeFacet+"",  	
+                		  function (data) {
+					      response($.map(data.response.docs, function (item) {
+                              	 return {
+                                  	 label:item.object_t,
+                                     value:item.object_t,
+                                  	 id:item.subject_t,
+                                  	 facet:item[dataTypeFacet]
+                              	 }
+                               }));
+                           }
+                	);
+              	},
+                select: function( event, ui ) {
+                	if (ui.item) {
+           				$('#type').html("Type: " + '<a href="#&URI='+ui.item.id+'">'+ui.item.value+'</a>');
+                		$('#values').html("");
+           				$('#products').html("");
+       					
+       					getURIDetails(ui.item.id);
+       					
+       					}
+       				
+				}
+            });
+ 		
+ 	/*	
+ 		//allows user to hit enter key to search directly.
+ 		$("#autoNameCategoryOrganic").keypress(function(e){
+ 			if (e.keyCode === 13){
+ 			  	$.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&q=predicate_t%3A" + dataTypeSearch + "*&fq=object_t%3A\""+ $("#autoNameCategoryOrganic").val() + "\"&start=0&rows=10&fl=%2Csubject_t%2Cpredicate_t%2Cobject_t%2C"+dataTypeFacet+"",  
+            			
+                        function (data) {
+					      	$.each(data.response.docs, function (key, val){
+					      		obj = val.object_t;
+					      		sub = val.subject_t;
+					      		facet = val[dataTypeFacet];
+					      	})
+					      	
+					      	if(obj&&sub){
+					      		$('#type').html("Type: "+ obj + ':');
+		                		$('#values').html("");
+		           				$('#products').html("");
+		       				
+		       					getURIDetails(sub);
+		       					facetTable(facet);
+					      	}
+					       });
+ 			}
+ 		})*/
+            
+        $(document).on('click', '#hierarchy tr', function() {
+        			
+        	var facetName=$(this).find('td:first').find('a:first').attr('href').replace('#&facet','');
+        	var rowNumber=$(this).index();
+        	
+        	$('#hierarchy').find("tr:gt("+rowNumber+")").remove();
+        	$('#type').html("Choose Below")
+        	$('#products').html("");
+        	$('#values').html("");
+				
+		    $.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&fl=id&start=0&rows=100&q="+dataTypeFacet+":" + facetName,  
+           		function (data) {
+					$.each(data.response.docs, function (key, val) {
+                		$.getJSON("http://" + location.hostname + ":8080/infer/rest/listStatements?subject=" + encodeURIComponent(val.id), function(data) {
+	       					var imageHTML;
+	       					var nameHTML;
+	       					var tempHTML;
+	       					var thirdColumnHTML;
+	       					var uriHTML=val.id;
+	       						
+	    					$.each(data.statements,function(key2, val2){
+	       						obj=val2.object_t;
+	       						sub=val2.subject_t;
+	       						pred=val2.predicate_t;
+	       						
+	       						
+								
+							
+				    			})
+							})
+								
+
+							});//innermost getJSON
+                 }) //each statement for each product
+               });//inner get JSON brackets
+          
+ 	
+ 		//Reification
+        $(document).on('click',"#values td:nth-child"+columnReify, function(){
+        	var uriReifIdArray=$($(this).find('a:first')).attr('href').replace('#','').split('&');
+        	var uri = uriReifIdArray[0].substring(uriReifIdArray[0].indexOf('=')+1).replace('#','%23');
+        	var reifId = uriReifIdArray[1].substring(uriReifIdArray[1].indexOf('=')+1).replace('#','%23');
+        	
+        	$('#type').append("-->"+$(this).siblings('td:first-child').text()+ " (Reify)");
+        	$('#values').html("");
+        	$.getJSON('http://' + location.hostname + ':8080/infer/rest/listReified?reifId="'+reifId+'"', function(data) {
+        		
+        			$.each(data.statements,function(key, val){
+   						productDetailTable(val.r_object_t,val.r_subject_t,val.r_predicate_t,null,uri);
+        			})
+        	})
+        	
+        
+           	
+        });
+        $(document).on('click',"#values td:nth-child(2)", function(){
+	        	
+        		if($($(this).find('a:first')).attr('href')){
+        			var uri = $($(this).find('a:first')).attr('href').replace('#&URI=','');
+		        	var typeText = '<a href="#&URI='+uri+'">'+uri.substring(uri.lastIndexOf('#')+1)+'</a>'
+		        	$('#type').append("-->"+typeText);
+		        	$('#values').html("");
+		        	getURIDetails(uri);
+		        	}
+		       	
+		  });
+		  
+		$(document).on('click',"#type a", function(){
+        	var uri = $(this).attr('href').replace('#&URI=','');
+        	var typeString = $('#type').html();
+        	
+        	if($('#type').find('a:first').html()==$(this).html()){
+        		$('#products').html("");
+        	}
+        	//it looks to see if there is an arrow after the clicked on URI
+        	if(typeString.substring(typeString.indexOf(uri)).indexOf('--&gt')>0){
+        		//if there is, it does some finegling to get the string all the way
+        		//up to that final arrow.
+        		typeString.substring(typeString.indexOf(uri)).indexOf('--&gt');
+        		var indexTypeEnd=typeString.substring(0,typeString.indexOf(uri)).length+typeString.substring(typeString.indexOf(uri)).indexOf('--&gt');
+        		$('#type').html(typeString.substring(0,indexTypeEnd));
+        	}
+        	$('#values').html("");
+        	getURIDetails(uri);
+		})
+
+        $(document).on('click',"#products tr", function() {
+        
+        	
+        	var href = $($(this).find('td:first').find('a:first')).attr('href');
+        	var uri = href.substring(href.indexOf('&objID'),href.indexOf('&URI')).replace('&objID=','');
+            
+        	$('#type').html("Type: " + $($(this).find('td:first')).text());
+         	$('#values').html("");
+   			$('#products').html("");
+					
+				if(uri){
+							        	
+					getURIDetails(uri);
+					$.getJSON("http://" + location.hostname + ":8080/solr/infer/select?indent=on&fl="+dataTypeFacet+"&start=0&rows=10&q=id:" + uri, function (data){
+			          facetTable(data.response.docs[0][dataTypeFacet]);
+					})
+				}
+		       	else{
+		       		$('#values').append('<td>Not Found</td>')
+		       	}
+				
+		  })
+      
+
+////////////////////////////////////////////////////////////////////////////////////////
+	  function getURIDetails (uri){
+        	$.getJSON("http://" + location.hostname + ":8080/infer/rest/listStatements?subject=\"" + uri.replace('#','%23')+"\"", function(data) {
+				var obj;
+				var sub;
+				var pred;
+				var reifId;
+				var tellMeMore = "";
+				var type = "Unknown";
+				var image;
+				var nameHTML;
+				var productIdHTML;
+				var imageHTML;
+				var breadcrumbHTML;
+				var tempHTML;
+				var thirdColumnHTML;
+					
+				$.each(data.statements,function(key,val){
+						obj=val.object_t;
+						sub=val.subject_t;
+						pred=val.predicate_t;
+						reifId=val.reifiedId_t;
+							
+					productDetailTable(obj,sub,pred,reifId,uri);
+					
+					
+				})
+
+			})
+        }
+	  
+	    //Table Functions
+        
+        
+        
+        function productDetailTable(obj,sub,pred,reifId,uri){
+    				var originalSub=sub;
+        			var originalPred=pred;
+    				var originalObj=obj;
+        	
+        			//Object Statements: if and else-if to make web pages hyperlinks and show images
+    					if (obj.indexOf('http://')>=0 && (obj.indexOf('.jpg')>=0||obj.indexOf('.gif')>=0)){
+    						imageHTML = '<img src="' + obj + '" alt="' + obj + '"width="100" height="100">';
+    					}
+    					else if(pred.indexOf('rdf-syntax-ns#type')>=0){}
+    					else if(obj.indexOf('http:')==0||obj.indexOf('https:')==0){
+    						obj = '<a href="#&URI='+originalObj+'">Tell Me More</a>';
+    						}
+    					else if(obj.indexOf(' ')<0 && obj.split(":").length>2 && obj.indexOf('T')<0){
+    						obj = '<a href="#&URI='+originalObj+'">Tell Me More</a>';
+    					}
+    					else if(obj.indexOf('\n')>=0){
+    						obj = obj.replace(/\n/g,'<br />');
+    					}
+
+    					//Predicate Statements: if statement to remove schema.org from predicate
+    					//CHANGED TO MATCH DATA
+    					if (pred.indexOf('http:')==0||pred.indexOf('https:')==0){
+    						pred = pred.substring(pred.lastIndexOf('/')+1);
+    					}
+    					
+    					if (pred.indexOf('#')>=0){
+    						pred = pred.substring(pred.lastIndexOf('#')+1);
+    					}
+    					
+    					if(pred.indexOf('resultTerms')>=0||pred.indexOf('startTerms')>=0){
+    							var myObject = eval('(' + originalObj + ')');
+    							obj = "<table><tr><td>Description</td><td>Address</td><td>User Rating</td></tr>";
+    							$.each(myObject.d.results, function (key,val){
+    								obj+=('<tr><td>'+val.Description+'</td><td>'+val.Address+'</td><td>'+val.UserRating+'</td></tr>');
+    							})
+    							
+    							obj+=("</table>");
+    					}
+    				
+    							
+
+    					
+    					if(!reifId){
+    						$('#values').append('<tr><td>'+pred+'</td><td>'+obj+'</td><td></td></tr>');
+    	    			}
+    					else{
+    						$('#values').append('<tr><td>'+pred+'</td><td>'+obj+'</td><td><a href="#uri='+uri+'&reifId='+reifId+'">Source</a> </td></tr>');
+    					}
+    		 }
+
+  		
+        
+		$("#error").ajaxError(function(event, request, settings){
+  		$(this).append("<li>Error requesting page " + settings.url + "</li>");
+		});
+       
+    });
+        
+
+        
+    </script>
+
+</head>
+<body>
+<div style="text-align: center; width: 100%;">
+<div style="float:left; " id=banner>   </div>
+</div>
+<div style="clear:both"></div>
+<div style ="width: 100%;">
+  
+     <div style="clear:both"></div>
+<div style ="width: 20%; float:left;">
+    <table class="hierarchy" id="hierarchy">
+    </table> 
+</div>
+
+<div style="width:79%; float:right ;" id="mainBar">
+     <div style="clear:both"></div>
+    <div style="float: left; width: 20%;">
+        <input type="text" name="autoNameCategoryOrganic" id="autoNameCategoryOrganic" />
+    </div>
+  
+    <div style="clear:both"></div>
+    <h2 style="float:left; " id="type"></h2>
+    <div style="clear:both"></div> 
+
+
+<table id="products" class="products"></table>
+<div id="tableScroll"><table id="values" class="values"></table></div>
+<br></br>
+<div id="error"></div>
+</div>
+</div>
+</body>
+
+
+</html>

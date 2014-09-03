@@ -1,0 +1,12 @@
+<http://www.w3.org/2006/vcard/ns#VCardJohn_Williams-john.williams.inferces@gmail.com> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#personCommitsToEvent> <http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#pointStatus> "point" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#trackPointWhen> "2013-12-22T17:46:03.647Z" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> <http://www.w3.org/2006/vcard/ns#longitude> "-83.22841" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> <http://www.w3.org/2006/vcard/ns#latitude> "42.678858" .
+<http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#DestinationHasAsAnEvent> <http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsADestination> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#TrackPoint1387733763665> .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventDescription> "Dr. Appointment" .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventHasAsALocation> "3095 E Walton Blvd, Auburn Hills, MI, 48326" .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventEndTime> "2013-12-22T18:46:03.655Z" .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventStartTime> "2013-12-22T17:46:03.647Z" .
+<http://linkedevents.org/ontology/Event#John_Williams-john.williams.inferces@gmail.com1387733763657> <http://www.compscii.com/ontologies/0.1/AutoIE.owl#eventCommittedByPerson> <http://www.w3.org/2006/vcard/ns#VCardJohn_Williams-john.williams.inferces@gmail.com> .

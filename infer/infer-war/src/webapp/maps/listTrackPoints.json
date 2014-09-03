@@ -1,0 +1,322 @@
+{
+   "inferredAlert":"EMPTY",
+   "tracks":{
+      "history":[
+         {
+            "track":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479080700",
+            "trackPoints":[
+               {
+                  "status":"history",
+                  "when":"2014-01-04T00:45:32.10Z",
+                  "lng":"-75.163727000",
+                  "lat":"39.953396000"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:06:32.11Z",
+                  "lng":"-75.169815",
+                  "lat":"39.957855"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T02:18:32.9Z",
+                  "lng":"-75.181759",
+                  "lat":"39.964503"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T02:18:32.11Z",
+                  "lng":"-75.182515",
+                  "lat":"39.96448"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T02:57:32.9Z",
+                  "lng":"-75.188987",
+                  "lat":"39.96591"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T02:57:32.11Z",
+                  "lng":"-75.190594",
+                  "lat":"39.966496"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T03:12:32.9Z",
+                  "lng":"-75.192503",
+                  "lat":"39.968303"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T03:12:32.10Z",
+                  "lng":"-75.194794000",
+                  "lat":"39.968872000"
+               }
+            ]
+         },
+         {
+            "track":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479080055",
+            "trackPoints":[
+               {
+                  "status":"history",
+                  "when":"2014-01-04T00:45:32.10Z",
+                  "lng":"-75.163727000",
+                  "lat":"39.953396000"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:06:32.11Z",
+                  "lng":"-75.169815",
+                  "lat":"39.957855"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:57:32.9Z",
+                  "lng":"-75.179242",
+                  "lat":"39.966272"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:57:32.11Z",
+                  "lng":"-75.179425",
+                  "lat":"39.966433"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T03:39:32.9Z",
+                  "lng":"-75.197094",
+                  "lat":"39.98474"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T03:39:32.11Z",
+                  "lng":"-75.199061",
+                  "lat":"39.983769"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T04:03:32.9Z",
+                  "lng":"-75.196884",
+                  "lat":"39.987064"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T04:03:32.10Z",
+                  "lng":"-75.195908000",
+                  "lat":"39.988277000"
+               }
+            ]
+         }
+      ],
+      "inferredPOIs":[
+         {
+            "streetAddress":"200 18 St, Philadelphia",
+            "description":"Food",
+            "name":"Milk & Honey Cafe",
+            "lng":"-75.169203",
+            "lat":"39.957042"
+         },
+         {
+            "streetAddress":"1 Logan Square, Philadelphia",
+            "description":"Other",
+            "name":"Fountain Restaurant",
+            "lng":"-75.169761",
+            "lat":"39.956839"
+         },
+         {
+            "streetAddress":"1776 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Services",
+            "name":"Cardtronics ATM",
+            "lng":"-75.168969",
+            "lat":"39.95648"
+         },
+         {
+            "streetAddress":"1776 Benjamin Franklin Pkwy, Philadephia",
+            "description":"Food",
+            "name":"T.G.I. Friday's",
+            "lng":"-75.168981",
+            "lat":"39.956297"
+         },
+         {
+            "streetAddress":"200 N 19th St, Philadelphia",
+            "description":"Other",
+            "name":"Logan Square",
+            "lng":"-75.170954",
+            "lat":"39.958003"
+         },
+         {
+            "streetAddress":"1709 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Other",
+            "name":"United Way",
+            "lng":"-75.168271",
+            "lat":"39.95655"
+         },
+         {
+            "streetAddress":"1709 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Health",
+            "name":"Public Citizens for Children and Youth",
+            "lng":"-75.168197",
+            "lat":"39.956483"
+         },
+         {
+            "streetAddress":"2 Logan Square, Philadelphia",
+            "description":"Food",
+            "name":"Public House",
+            "lng":"-75.169629",
+            "lat":"39.955814"
+         },
+         {
+            "streetAddress":"1900 Cherry St, Philadelphia",
+            "description":"Other",
+            "name":"Support Center For Child Advocates",
+            "lng":"-75.171148",
+            "lat":"39.956229"
+         },
+         {
+            "streetAddress":"1714 Cherry St, Philadelphia",
+            "description":"Food",
+            "name":"Mace's Crossing",
+            "lng":"-75.168356",
+            "lat":"39.955926"
+         },
+         {
+            "streetAddress":"1701 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Other",
+            "name":"Subway",
+            "lng":"-75.167873",
+            "lat":"39.956284"
+         },
+         {
+            "streetAddress":"1700 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Other",
+            "name":"Asia on the Parkway",
+            "lng":"-75.168288",
+            "lat":"39.955852"
+         },
+         {
+            "streetAddress":"1700 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Food",
+            "name":"Con Murphy's Irish Pub",
+            "lng":"-75.168133",
+            "lat":"39.955828"
+         },
+         {
+            "streetAddress":"100 N 18th St, Philadelphia",
+            "description":"Food",
+            "name":"Au Bon Pain",
+            "lng":"-75.169702",
+            "lat":"39.955406"
+         },
+         {
+            "streetAddress":"1700 Benjamin Franklin Pkwy, Philadelphia",
+            "description":"Other",
+            "name":"The Windsor Suites",
+            "lng":"-75.16803",
+            "lat":"39.955715"
+         },
+         {
+            "streetAddress":"1717 Arch St #51, Philadelphia",
+            "description":"Other",
+            "name":"Top of the Tower",
+            "lng":"-75.169253",
+            "lat":"39.955306"
+         },
+         {
+            "streetAddress":"1717 Arch St, Philadelphia",
+            "description":"Other",
+            "name":"Tower Bistro",
+            "lng":"-75.16919",
+            "lat":"39.955293"
+         },
+         {
+            "streetAddress":"1717 Arch St, Philadelphia",
+            "description":"Food",
+            "name":"HubBub Coffee",
+            "lng":"-75.168925",
+            "lat":"39.955333"
+         },
+         {
+            "streetAddress":"1601 Cherry St #1700, Philadelphia",
+            "description":"Other",
+            "name":"excelleRx",
+            "lng":"-75.167206",
+            "lat":"39.955983"
+         },
+         {
+            "streetAddress":"1901, Philadelphia",
+            "description":"Food",
+            "name":"Home Page Cafe",
+            "lng":"-75.170764",
+            "lat":"39.959517"
+         }
+      ],
+      "inferredHistory":[
+         {
+            "track":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479081033",
+            "trackPoints":[
+               
+            ]
+         }
+      ],
+      "routesRemoved":[
+         {
+            "http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479080973":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479080973"
+         }
+      ],
+      "actual":[
+         {
+            "track":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479437128",
+            "trackPoints":[
+               {
+                  "status":"actual",
+                  "when":"2014-01-04T00:45:32.10Z",
+                  "lng":"-75.163727000",
+                  "lat":"39.953396000"
+               },
+               {
+                  "status":"actual",
+                  "when":"2014-01-04T01:06:32.10Z",
+                  "lng":"-75.169662000",
+                  "lat":"39.957329000"
+               }
+            ]
+         }
+      ],
+      "inferred":[
+         {
+            "track":"http:\/\/www.compscii.com\/ontologies\/0.1\/AutoIE.owl#Route1393479437128",
+            "trackPoints":[
+               {
+                  "status":"history",
+                  "when":"2014-01-04T00:45:32.10Z",
+                  "lng":"-75.163727000",
+                  "lat":"39.953396000"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:06:32.11Z",
+                  "lng":"-75.169815",
+                  "lat":"39.957855"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:57:32.9Z",
+                  "lng":"-75.179242",
+                  "lat":"39.966272"
+               },
+               {
+                  "status":"history",
+                  "when":"2014-01-04T01:57:32.10Z",
+                  "lng":"-75.179352000",
+                  "lat":"39.966450000"
+               }
+            ],
+            "destination":{
+               "lng":"-75.179352000",
+               "lat":"39.966450000"
+            }
+         }
+      ]
+   }
+}

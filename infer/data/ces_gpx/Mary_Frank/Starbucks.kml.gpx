@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx
+  version="1.0"
+  creator="GPSBabel - http://www.gpsbabel.org"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.topografix.com/GPX/1/0"
+  xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
+<time>2013-11-26T15:26:55Z</time>
+<bounds minlat="42.669392000" minlon="-83.233650000" maxlat="42.680099000" maxlon="-83.220383000"/>
+<wpt lat="42.669392000" lon="-83.233650000">
+  <ele>0.000000</ele>
+  <name>From: 3000 University Dr, Auburn Hills, MI 48326</name>
+  <cmt>From: 3000 University Dr, Auburn Hills, MI 48326</cmt>
+  <desc>From: 3000 University Dr, Auburn Hills, MI 48326</desc>
+</wpt>
+<wpt lat="42.680099000" lon="-83.221100000">
+  <ele>0.000000</ele>
+  <name>To: Starbucks, N Squirrel Rd, Auburn Hills, MI</name>
+  <cmt>To: Starbucks, N Squirrel Rd, Auburn Hills, MI</cmt>
+  <desc>To: Starbucks, N Squirrel Rd, Auburn Hills, MI</desc>
+</wpt>
+<trk>
+  <name>Driving directions to Starbucks, N Squirrel Rd, Auburn Hills, MI</name>
+<trkseg>
+<trkpt lat="42.669392000" lon="-83.233650000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670563000" lon="-83.230415000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.670895000" lon="-83.229645000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.671741000" lon="-83.227936000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.672062000" lon="-83.226959000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.672184000" lon="-83.226311000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.672272000" lon="-83.225327000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.672516000" lon="-83.220383000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.672516000" lon="-83.220383000">
+  <ele>0.000000</ele>
+</trkpt>
+<trkpt lat="42.680099000" lon="-83.221100000">
+  <ele>0.000000</ele>
+</trkpt>
+</trkseg>
+</trk>
+</gpx>

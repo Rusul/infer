@@ -1,0 +1,152 @@
+{
+	"originPoint": {
+		"lat": "39.953396000",
+		"lng": "-75.163727000"
+	},
+	"destinationPoint": {
+		"lat": "39.988277000",
+		"lng": "-75.195908000"
+	},
+	"POIs": [
+		{
+			"lat": "39.991284",
+			"lng": "-75.194839",
+			"streetAddress": "7201 Edgley Dr, Philadelphia",
+			"name": "Laurel Hill Mansion",
+			"description": "Other"
+		},
+		{
+			"lat": "39.993634",
+			"lng": "-75.190587",
+			"streetAddress": "2301 N 29th St #240, Philadelphia",
+			"name": "Foot Locker",
+			"description": "Shopping"
+		},
+		{
+			"lat": "39.981527",
+			"lng": "-75.195365",
+			"streetAddress": "3500 Reservoir Dr, Philadelphia",
+			"name": "Smith Memorial Playground & Playhouse",
+			"description": "Other"
+		},
+		{
+			"lat": "39.981604",
+			"lng": "-75.1935",
+			"streetAddress": "Philadelphia",
+			"name": "East Fairmount Park",
+			"description": "Other"
+		},
+		{
+			"lat": "39.994748",
+			"lng": "-75.185931",
+			"streetAddress": "2454 N 33rd St, Philadelphia",
+			"name": "Ron's the Barber Shop",
+			"description": "Other"
+		},
+		{
+			"lat": "39.996091",
+			"lng": "-75.205375",
+			"streetAddress": "4160 Horticultural Dr, Philadelphia",
+			"name": "West Fairmount Park",
+			"description": "Other"
+		},
+		{
+			"lat": "39.999356",
+			"lng": "-75.201862",
+			"streetAddress": "50 Chamounix Dr, Philadelphia",
+			"name": "Friends of Chamounix Tennis Courts of Fairmount Park",
+			"description": "Other"
+		},
+		{
+			"lat": "39.9834",
+			"lng": "-75.2102",
+			"streetAddress": "100 N Horticultural Dr, Philadelphia",
+			"name": "Fairmont Horticultural Center",
+			"description": "Other"
+		},
+		{
+			"lat": "39.981498",
+			"lng": "-75.182818",
+			"streetAddress": "N 29th St, Columbia Ave., N 30th St., Oxford Ave (Cecil B Moore Ave), Nicholas St, Philadelphia",
+			"name": "Columbia Park",
+			"description": "Other"
+		},
+		{
+			"lat": "39.991427",
+			"lng": "-75.180029",
+			"streetAddress": "2314 N 29th St, Philadelphia",
+			"name": "New Shanghai Chinese Restaurant",
+			"description": "Other"
+		},
+		{
+			"lat": "39.991227",
+			"lng": "-75.179593",
+			"streetAddress": "2875 W Dauphin St, Philadelphia",
+			"name": "KFC Philadelphia",
+			"description": "Other"
+		},
+		{
+			"lat": "39.990715",
+			"lng": "-75.17925",
+			"streetAddress": "2450 Strawberry Mansion Drive Philadelphia, PA 19132",
+			"name": "Strawberry Mansion Health Center",
+			"description": "Health"
+		},
+		{
+			"lat": "39.992122",
+			"lng": "-75.179418",
+			"streetAddress": "2329 N 29th St, Philadelphia",
+			"name": "Checkers Drive-In Restaurant",
+			"description": "Other"
+		},
+		{
+			"lat": "39.990871",
+			"lng": "-75.178641",
+			"streetAddress": "2800 W Dauphin St, Philadelphia",
+			"name": "New Star Pizza",
+			"description": "Other"
+		},
+		{
+			"lat": "39.990835",
+			"lng": "-75.178279",
+			"streetAddress": "2801 W Dauphin St, Philadelphia",
+			"name": "Save-A-Lot",
+			"description": "Other"
+		},
+		{
+			"lat": "39.990892",
+			"lng": "-75.178251",
+			"streetAddress": "2801 W Dauphin St, Philadelphia",
+			"name": "Rite Aid Pharmacy",
+			"description": "Other"
+		},
+		{
+			"lat": "39.97543",
+			"lng": "-75.188084",
+			"streetAddress": "3201 W Girard Ave, Philadelphia",
+			"name": "Father's Day Rally Committee, Inc.",
+			"description": "Other"
+		},
+		{
+			"lat": "39.981403",
+			"lng": "-75.212941",
+			"streetAddress": "Horticultural Dr, Philadelphia",
+			"name": "Shofuso Japanese House and Garden",
+			"description": "Other"
+		},
+		{
+			"lat": "40.000049",
+			"lng": "-75.207752",
+			"streetAddress": "3905 Ford Rd #6, Philadelphia",
+			"name": "The Center for Autism",
+			"description": "Other"
+		},
+		{
+			"lat": "39.99938",
+			"lng": "-75.208875",
+			"streetAddress": "3900 Ford Rd, Philadelphia",
+			"name": "Schutzbank Steven R DPM",
+			"description": "Health"
+		}
+	]
+}

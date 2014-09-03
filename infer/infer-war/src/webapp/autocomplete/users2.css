@@ -1,0 +1,200 @@
+
+body {
+    background: none repeat scroll 0 0 #B6B7BC;
+    color: #696969;
+    font-family: "Helvetica Neue","Lucida Grande","Segoe UI",Arial,Helvetica,Verdana,sans-serif;
+    font-size: 0.8em;
+    margin: 0;
+    padding: 0;
+}
+a:link, a:visited {
+    color: #034AF3;
+}
+a:hover {
+    color: #1D60FF;
+    text-decoration: none;
+}
+a:active {
+    color: #034AF3;
+}
+p {
+    line-height: 1.6em;
+    margin-bottom: 10px;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #666666;
+    font-size: 1.5em;
+    font-variant: small-caps;
+    font-weight: 200;
+    margin-bottom: 0;
+    text-transform: none;
+}
+h1 {
+    font-size: 1.6em;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+h2 {
+    font-size: 1.5em;
+    font-weight: 600;
+}
+h3 {
+    font-size: 1.2em;
+}
+h4 {
+    font-size: 1.1em;
+}
+h5, h6 {
+    font-size: 1em;
+}
+.txtbox {
+}
+.txtboxerror {
+    border-color: #FF0000;
+}
+.tableClass {
+    border-color: Gray;
+    border-style: outset;
+}
+.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2 {
+    margin-top: 0;
+}
+.page {
+    background-color: #FFFFFF;
+    border: 1px solid #505050;
+    margin: 20px auto 0;
+    width: 960px;
+}
+.header {
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+.header h1 {
+    border: medium none;
+    color: #F9F9F9;
+    font-size: 2em;
+    font-weight: 700;
+    line-height: 2em;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+.main {
+    margin: 12px 8px 8px;
+    min-height: 420px;
+    padding: 0 12px;
+}
+.leftCol {
+    margin: 12px 8px 8px;
+    min-height: 200px;
+    padding: 6px 0;
+    width: 200px;
+}
+.footer {
+    color: #4E5766;
+    line-height: normal;
+    margin: 0 auto;
+    padding: 8px 0 0;
+    text-align: center;
+}
+div.hideSkiplink {
+    background-color: #3A4F63;
+    width: 100%;
+}
+div.menu {
+    padding: 4px 0 4px 8px;
+}
+div.menu ul {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+}
+div.menu ul li a, div.menu ul li a:visited {
+    background-color: #465C71;
+    border: 1px solid #4E667D;
+    color: #DDE4EC;
+    display: block;
+    line-height: 1.35em;
+    padding: 4px 20px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+div.menu ul li a:hover {
+    background-color: #BFCBD6;
+    color: #465C71;
+    text-decoration: none;
+}
+div.menu ul li a:active {
+    background-color: #465C71;
+    color: #CFDBE6;
+    text-decoration: none;
+}
+fieldset {
+    border: 1px solid #CCCCCC;
+    margin: 1em 0;
+    padding: 1em;
+}
+fieldset p {
+    margin: 2px 12px 10px 10px;
+}
+fieldset.login label, fieldset.register label, fieldset.changePassword label {
+    display: block;
+}
+fieldset label.inline {
+    display: inline;
+}
+legend {
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px;
+}
+input.textEntry {
+    border: 1px solid #CCCCCC;
+    width: 320px;
+}
+input.passwordEntry {
+    border: 1px solid #CCCCCC;
+    width: 320px;
+}
+div.accountInfo {
+    width: 42%;
+}
+.clear {
+    clear: both;
+}
+.title {
+    display: block;
+    float: left;
+    text-align: left;
+    width: auto;
+}
+.loginDisplay {
+    color: White;
+    display: block;
+    font-size: 1.1em;
+    padding: 10px;
+    text-align: right;
+}
+.loginDisplay a:link {
+    color: white;
+}
+.loginDisplay a:visited {
+    color: white;
+}
+.loginDisplay a:hover {
+    color: white;
+}
+.failureNotification {
+    color: Red;
+    font-size: 1.2em;
+}
+.bold {
+    font-weight: bold;
+}
+.submitButton {
+    padding-right: 10px;
+    text-align: right;
+}
